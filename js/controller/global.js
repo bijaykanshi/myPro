@@ -90,7 +90,7 @@ app.factory('global', function($http, $modal, $state){
 });
 
 app.run(function($rootScope, global) {
-    $rootScope.global = global;//setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
+    $rootScope.global = global;setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
     chat.global = global;
     /*$rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!(next.templateUrl == "firstPage/index.html")) {
