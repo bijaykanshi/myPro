@@ -1,0 +1,50 @@
+<div  style="background-color: white;">
+		<div class="features_items"><!--features_items-->
+			<h2 class="title text-center ">Features Items</h2>
+			<div class="col-sm-2 " ng-repeat = "list in global.peopleList[global.currentPage]" ng-if = "list.id != global.myInfo.id">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<img check-image ng-src="images/peopleList/{{list.id}}" name = "{{list.id}}" class = "profileImage imgHeight" alt="checkImage" />
+							<h2><p>Name - {{list.name}}</p></h2>
+							<h2><p>Chat</p></h2>
+							<!-- <h2><p>Show Profile</p></h2> -->
+							<!-- <a href="javascript:void(0);" class="btn btn-default add-to-cart">Chat</a>
+								<a href="javascript:void(0);" class="btn btn-default add-to-cart" ng-click = "global.openModal('template/modals/showProfile.html', 'showProfileCtrl', list);">Show Profile</a> -->
+						</div>
+						<div class="product-overlay">
+							<div class="overlay-content">
+								<h2>{{list.name}}</h2>
+								<p>Prof - {{list.Profession}}</p>
+								<p>Distance - {{list.district}}</p>
+								<a ng-click = "global.register_pop(list.id, list.name)" href="javascript:void(0);" class="btn btn-default add-to-cart">Chat</a>
+								<a href="javascript:void(0);" class="btn btn-default add-to-cart" ng-click = "global.openModal('template/modals/showProfile.html', 'showProfileCtrl', list);">Show Profile</a>
+								
+							</div>
+						</div>
+					</div>
+					<div class="choose">
+						<ul class="nav nav-pills nav-justified">
+							<li><a href=""><i class="fa fa-plus-square"></i>{{list.contact_No}}</a></li>
+							<li><a href=""><i class="fa fa-plus-square"></i>{{list.email}}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<ul class="pagination page">
+				<li  ng-class="{'disabled': global.currentPage == 0}">
+                    <a href="javascript:void(0);" ng-show="global.currentPage == 0">« Prev</a>
+                    <a href="javascript:void(0);" ng-hide="global.currentPage == 0" ng-click="global.currentPage=global.currentPage-1;">« Prev</a>
+                </li>
+				 <li id="paging" ng-repeat="n in [] | range:(global.peopleList.length)" ng-class="{active: n == global.currentPage}" ng-click="global.currentPage = n;">
+                    <a href="javascript:void(0);" ng-bind="n + 1">1</a>
+                </li>
+                 <li  ng-class="{'disabled': global.currentPage == global.peopleList.length - 1}">
+                    <a href="javascript:void(0);" ng-show="global.currentPage == global.peopleList.length - 1">Next »</a>
+                    <a href="javascript:void(0);" ng-hide="global.currentPage == global.peopleList.length - 1" ng-click="global.currentPage=global.currentPage+1;">Next »</a>
+                </li>
+			</ul>
+		</div><!--features_items-->
+	</div>

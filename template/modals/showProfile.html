@@ -1,0 +1,26 @@
+
+    <div class="googleMapContent" >
+      <div class="modal-header">
+        <button type="button" ng-click="close()" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">my Profile</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+           <img ng-src="/images/peopleList/{{profile.id}}" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+          
+        </div>
+          Name -  <span >{{profile.name}}</span><br/><br/>
+          Email -- <span >{{profile.email}}</span><br/><br/>
+          Contact No --  <span >{{profile.contact_No}}</span><br/><br/>
+           country  -- <span >{{profile.country}}</span><br/><br/>
+           state  -- <span >{{profile.state}}</span><br/><br/>
+           district -- <span >{{profile.district}}</span><br/><br/>
+           Pin Code -- <span >{{profile.Pin_Code}}</span><br/><br/>
+           Profession -- <span >{{profile.Profession}}</span><br/><br/>
+           About me -- <span >{{profile.msg}}</span><br/><br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+

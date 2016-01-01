@@ -1,0 +1,240 @@
+.submitBtn {
+	margin-top: 9%;
+    background-color: peachpuff;
+}
+.fixedWidthHeight {
+	width: 20%;
+	height: 110px;
+}
+.page {
+	width: 100%;
+}
+.loginPage {
+	width: 96%;
+    margin-left: 2%;
+    border-radius: 1%;
+}
+.container123 {
+	width: 100%
+}
+.large-Modal .modal-dialog{
+width: 44%;
+}
+#googleMap {
+	    position: fixed;
+    overflow: inherit;
+    transform: translate;
+    /* background-color: rgb(229, 227, 223); */
+    width: 100%;
+    height: 400px;
+}
+.googleMapContent {
+	 width: 100%;
+    /* margin-left: 4.3%; */
+    height: 149%;
+
+}
+.extraLarge-Modal .modal-dialog {
+	width: 75%;
+}
+.even {
+    background-color: gold;
+    font-size: 27.4px;
+    cursor: pointer;
+}
+.odd {
+    background-color: cyan;
+    cursor: pointer;
+    font-size: 27.4px;
+}
+.searchBox {
+    width: 456px;
+    height: auto;
+    border: 2px solid #d7d7d7;
+    box-shadow: 6px 6px 10px #ccc;
+    margin-top: 42px;
+    padding: 10px 0;
+    font-size: 13px;
+    background: #fff;
+    position: absolute;
+    top: 17px;
+    z-index: 2;
+    overflow-y: auto;
+    max-height: 300px;
+}
+.searchBox ul {
+  list-style: none;
+  padding-left: 0px;
+}
+.searchBox ul li
+{
+  margin-bottom: 2px;
+  padding: 3px 0;
+  padding-left: 15px;
+  color: #666;
+}
+.searchBox ul li:hover {
+  background: #c5dfec;
+  cursor: pointer;
+}
+.professionSearchBox {
+    margin-top: 135px;
+    z-index: 10;
+}
+.loginProfessionSearchBox {
+    margin-top: 190%;
+    z-index: 10;
+}
+.skillsSearchBox {
+    margin-top: 221px;
+    z-index: 10;
+}
+.loginSkillsSearchBox {
+    margin-top: 181%;
+    z-index: 10;
+}
+.countrySearchBox {
+    margin-top: 345px;
+    z-index: 6;
+}
+.citySearchBox {
+    margin-top: 394px;
+    z-index: 6;
+}
+  .filters {
+    border-bottom: #C3E5C5 1px solid;
+    padding-bottom: 2px;
+    display: none;
+}
+}
+.filters .text {
+    float: left;
+    padding: 4px;
+    margin: 0 5px 5px 0;
+    font-weight: bold;
+    color: #4692F0;
+    line-height: 20px;
+    height: 20px;
+}
+
+.filters ul {
+    float: left;
+    background: #C9EDF3;
+    padding: 4px 4px 0 0;
+    margin: 0 5px 5px 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.filters ul li.heading {
+    background: transparent;
+    color: #4692f0;
+    position: relative;
+    padding-right: 3px;
+    padding-left: 15px;
+    font-weight: bold;
+}
+.filters ul li {
+    float: left;
+    background: #4692F0;
+    color: #FFF;
+    font-size: 12px;
+    padding: 4px 16px 4px 7px;
+    margin: 0 0 4px 4px;
+    position: relative;
+    cursor: pointer;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.filters ul li .i-cross-sky-blue {
+    top: 6px;
+    left: 3px;
+    zoom: 1;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+.i-cross-sky-blue {
+    background-position: 0 -249px;
+    height: 8px;
+    width: 8px;
+}
+i {
+    background: url('../images/icon/cross.png') 0 0 no-repeat;
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    font-size: 0px !important;
+}
+.filters ul li .i-cross-white {
+    top: 6px;
+    right: 3px;
+    zoom: 1;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+.i-cross-white {
+    background-position: 0 -257px;
+    height: 8px;
+    width: 8px;
+}
+.iconClose
+{
+
+}
+.i-cross-white {
+    background-position: 0 -257px;
+    height: 8px;
+    width: 8px;
+}
+.closeBtnFixedPos {
+    position: fixed;
+}
+.footerClose {
+    padding: 19px 20px 20px;
+    margin-top: 15px;
+    
+    border-top: 1px solid #e5e5e5;
+}
+.containerWidth {
+    width: 100%;
+}
+.profileImage {
+    border-radius: 80px;
+    width: 40%;
+    height: 109px;
+}
+.imgHeight {
+    height: 150px;
+}
+.chatLeft {
+    width: 100%;
+    height: 900%;
+    position: fixed;
+    border: 4px solid #d7d7d7;
+    box-shadow: 6px 6px 10px #ccc;
+    /* margin-top: 42px; */
+    /* padding: 10px 0; */
+    font-size: 13px;
+    background: #E9EAED;
+    position: absolute;
+    top: 0px;
+    /* z-index: 2; */
+    overflow-y: auto;
+}
+.listStyle {
+    cursor: pointer;
+    height: 37px;
+    margin-left: -59px;
+
+}
+.listStyle:hover {
+    background-color: blueviolet;
+}
+.chatImage {
+    width: 31px;
+    height: 23px;
+    border-radius: 18px;
+    margin-left: 31px;
+}

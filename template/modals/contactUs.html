@@ -1,0 +1,80 @@
+
+    <div >
+          <div class="modal-header">
+              <button type="button" ng-click="close()" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Contact Us</h4>
+          </div>
+      
+                
+          <div class="modal-body">
+               <div class="bg">
+    		<div class="row">  	
+	    		<div class="col-sm-8">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+				            <div class="form-group col-md-6">
+				                <input type="text" name="name" class="form-control" ng-model = "contact.name"  readonly="true">
+				            </div>
+				            <div class="form-group col-md-6">
+				                <input type="email" name="email" ng-model = "contact.email" class="form-control" readonly="true">
+				            </div>
+				            <div class="form-group col-md-12">
+				                <input type="text" name="subject" ng-model = "contact.subject" class="form-control" required="required" placeholder="Subject">
+				            </div>
+				            <div class="form-group col-md-12">
+				                <textarea name="message" id="message" required="required" ng-model = "contact.msg" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+				            </div>                        
+				            <div class="form-group col-md-12">
+				                
+				            </div>
+				            <input type="submit" name="submit" class="btn btn-primary pull-right" ng-click = "submitContact()" value="Submit">
+				        </form>
+				        <div class="contact-info">
+	    				<h2 class="title text-center">Contact Info</h2>
+	    				<address style="text-align: center;">
+	    					<p>Bijay Kanshi</p>
+							<p>Noida</p>
+							<p>New Delhi</p>
+							<p>Mobile: 9910430419</p>
+							<p>Email: bijay.iit12@gmail.com</p>
+	    				</address>
+	    				<div class="social-networks">
+	    					<h2 class="title text-center">Social Networking</h2>
+							<ul>
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+							</ul>
+	    				</div>
+	    			</div>
+	    			</div>
+	    		</div>
+	    		<div class="col-sm-4">
+	    			
+    			</div>    			
+	    	</div>  
+    	</div>	
+            
+          
+
+            
+          </div>
+          <div class="footerClose">
+                <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button>
+            </div>
+         
+    </div>
+
+
+	
