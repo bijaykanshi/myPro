@@ -1,0 +1,100 @@
+
+				<div  style="background-color: white; " ng-controller = "searchCtrl">
+					<div class="left-sidebar">
+						<h2>Filter People By</h2>
+						
+					
+						<div class="brands_products">
+							<h2>Profession</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<input  type="text" class="form-control" placeholder="Type Your Profession" ng-model="searchProfession" ng-focus = "hideSearchBox['profession'] = false;global.itemsLimit = 50" ng-blur = "hideFun('profession', 'blur')"  />
+				                    <div class="searchBox professionSearchBox" ng-mousedown = "hideFun('profession', 'down')" ng-mouseup = "hideFun('profession', 'up')" ng-hide="hideSearchBox['profession'] || !global.professionList.length" directive-when-scrolled="loadMore()">
+				                    	<button class = "btn-default pull-right" ng-click = "closeSearchBox('profession')">close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+				                        <ul>
+				                            <li    ng-repeat="list in global.professionList | filter: searchProfession |limitTo: global.itemsLimit track by $index " ng-click = "setProfession(list)">
+				                            	<span  style="font-weight:bold;">{{list}}</span>|limitTo: global.itemsLimit
+				                            	<img src="/images/icon/checked.png" ng-show = "global.completeFilter.Profession.indexOf(list) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+				                            </li>
+				                        </ul>
+				                    </div>
+									
+								</ul>
+								
+								<ul class="nav nav-pills nav-stacked" >
+								<h2>Skills</h2>
+									<input  type="text" class="form-control" placeholder="Having Skills" ng-model="searchSkills" ng-focus = "hideSearchBox['skills'] = false;global.itemsLimit = 50" ng-blur = "hideFun('skills', 'blur')" />
+				                    <div class="searchBox skillsSearchBox" ng-mousedown = "hideFun('skills', 'down')" ng-mouseup = "hideFun('skills', 'up')" ng-hide="hideSearchBox['skills']" directive-when-scrolled="loadMore()">
+				                    	<button class = "btn-default pull-right" ng-click = "closeSearchBox('skills')">Close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+				                        <ul>
+				                            <li    ng-repeat="skill in global.skillsDetail | filter: searchSkills |limitTo: global.itemsLimit  track by $index" ng-click = "setSkills(skill)">
+				                            	<span  style="font-weight:bold;">{{skill}}</span>
+				                            	<img src="/images/icon/checked.png" ng-show = "global.completeFilter.Skills.indexOf(skill) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+				                            </li>
+				                        </ul>
+				                    </div>
+									
+								</ul>
+							</div>
+						</div>
+						<h2>Location</h2>
+						<div  >
+							<span style="font-weight:bold;">Country Search</span>
+							<input  type="text" class="form-control" placeholder="Search Country" ng-model="filter.searchCountry" ng-focus = "hideSearchBox['countryFlag'] = false;global.itemsLimit = 50" ng-blur = "hideFun('countryFlag', 'blur')"/>
+		                    <div class="searchBox countrySearchBox" ng-mousedown = "hideFun('countryFlag', 'down')" ng-mouseup = "hideFun('countryFlag', 'up')" ng-hide="hideSearchBox['countryFlag'] || !global.countryList.length"  directive-when-scrolled="loadMore()">
+		                    	<button class = "btn-default pull-right" ng-click = "closeSearchBox('countryFlag')">Close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+		                        <ul>
+		                            <li  ng-click="countryClick(country);"  ng-repeat="country in global.countryList | filter: filter.searchCountry|limitTo: global.itemsLimit" >
+		                            	<span style="font-weight:bold;">{{country}}</span>
+		                            	<img src="/images/icon/checked.png" ng-show = "global.completeFilter.Country.indexOf(country) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+		                            </li>
+		                        </ul>
+		                    </div>
+						</div>
+						<div >
+							<span style="font-weight:bold;">District Search</span> 
+							<input  type="text" class="form-control" ng-focus = "hideSearchBox['cityFlag'] = false;global.itemsLimit = 50"  placeholder="Search District" ng-model="filter.searchDistrict" ng-blur = "hideFun('cityFlag', 'blur')" ng-change = "cityFilter(filter.searchDistrict)"/>
+		                    <div class="searchBox citySearchBox" ng-mousedown = "hideFun('cityFlag', 'down')" ng-mouseup = "hideFun('cityFlag', 'up')" ng-hide="hideSearchBox['cityFlag'] || !global.completeFilter.Country.length" directive-when-scrolled="loadMore()">
+		                    	<button class = "btn-default pull-right" ng-click = "closeSearchBox('cityFlag')">Close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+		                    	<div ng-repeat = "countr in global.completeFilter.Country ">
+		                        <ul>
+		                        	{{countr}}
+		                            <li ng-click="cityClick(city);"  ng-repeat="city in global.list[countr] | filter: filter.searchDistrict |limitTo: global.itemsLimit track by $index" >
+		                            	<span style="font-weight:bold;">{{city}}</span>
+		                            	<img src="/images/icon/checked.png" ng-show = "global.completeFilter.District.indexOf(city) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+		                            </li>
+		                           
+		                        </ul>
+		                         </div>
+		                    </div>
+						</div>
+						<h2>Gender</h2>
+						<div >
+							<label>
+						    	<input type="checkbox" ng-model="filter.Male"
+						           ng-change = "setGender(filter.Male, 'Male')">
+						        Male
+						  	</label><br/>
+						  	<label>
+						    	<input type="checkbox" ng-model="filter.Female" ng-change = "setGender(filter.Female, 'Female')">
+						           Female
+						   	</label><br/>
+						</div>
+						
+						<!-- <div class="price-range">
+							<h2>Price Range</h2>
+							<div class="well text-center">
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+							</div>
+						</div>
+						
+						<div class="shipping text-center">
+							<img src="images/home/shipping.jpg" alt="" />
+						</div>
+					 -->
+					</div>
+				</div>
+				
+				
+			

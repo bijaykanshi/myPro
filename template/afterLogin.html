@@ -1,0 +1,123 @@
+<header id="header" ng-init = "global.extractCountry()" ><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +919910430419</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> bijay.iit12@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<!-- <div class="header-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/website.jpg" alt="" /></a>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div> --><!--/header-middle-->
+	
+		<div class="header-bottom" ng-init="selectedTab = 'home';"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse" >
+								
+								<li><a href="javascript:void(0);" ng-class="{'active':selectedTab === 'home'}"  ng-click="selectedTab = 'home'">Home</a></li>
+								
+								<li ><a data-hover="Update Profile"  ng-class="{'active':selectedTab === 'updateProfile'}" ng-click = "global.openModal('template/modals/login.html', 'loginSignUp', 'update');selectedTab = 'updateProfile'">Update Profile</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'google'}" ng-click = "global.openModal('template/modals/map.html', 'mapCtrl', undefined, 'extraLarge-Modal');selectedTab = 'google'">Track People By google Map</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'contactUs'}" ng-click = "global.openModal('template/modals/contactUs.html', 'loginSignUp', undefined, 'extraLarge-Modal');selectedTab = 'contactUs'">Contact</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'logout'}" ng-click = "global.stateChange('home');selectedTab = 'logout'">Logout</a></li>
+								<!-- <li><a ui-sref=".login" ng-class="{'active':selectedTab === 'login'}" ng-click="selectedTab = 'login'">Login or Sign Up</a></li> -->
+							</ul>
+						</div>
+						
+					</div>
+					<div style="display: -webkit-box;">
+						<img check-image ng-src="images/peopleList/{{global.myInfo.id}}" name = "{{global.myInfo.id}}" class = "profileImage pull-right" alt="checkImage" />
+						<input type="file" class="btn btn-default" style="display: -webkit-inline-box;" onchange = "jsWork.uploadPiczz(this)" /> <span  style="font-weight:bold;">Welcome {{global.myInfo.name}}        	</span>
+					</div>
+					
+				</div>
+			
+
+				<div class="row" ng-controller = "searchCtrl">
+					
+					<!-- <div class="col-sm-3">
+						<div class="search_box pull-left">
+							<input type="text" placeholder="District Search"/>
+						</div>
+					</div> -->
+					<div class="col-sm-3">
+						<!-- <div class="search_box pull-left">
+							<input type="text" placeholder="Profession Search"/>
+						</div> -->
+						<select  ng-model="global.itemsPerPage" ng-change="global.peopleList = global.getPaination(global.peopleListBackUp);global.currentPage = 0" ng-options="(size) for size in [] | range: 20"></select>
+					
+					</div>
+				</div>
+				<div class="filters" style="display: block;">
+					<div class="filter-list" >
+						<div class="text">Filters:</div>
+							<ul class="group" ng-repeat="item in global.filterItem">
+								<li class="heading" ng-show = "global.completeFilter[item].length">
+									<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter[item] = []" >
+									<span>{{item}}:</span><i class="i-cross-sky-blue"></i>
+								</li>
+								<li ng-repeat = "innerItem in global.completeFilter[item]">
+									<span>{{innerItem}}</span><!--  <i class="fa fa-close iconClose"></i> --> 
+									<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter[item].splice(global.completeFilter[item].indexOf(innerItem), 1)">
+								</li>
+							</ul>
+							
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+		</div><!--/header-bottom-->
+
+	</header><!--/header-->
+	<section>
+
+		<div class="container containerWidth">
+			<div class="row">
+			    <div class="col-sm-2"  ui-view="sideBar"></div>
+			    <div class="col-sm-8" ui-view="body"></div>
+			    <div  class="col-sm-2" ui-view="rightSideBar"></div>    
+			</div>
+		</div>
+	</section>
+	 <div  ui-view="footer"></div>   

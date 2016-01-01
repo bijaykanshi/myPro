@@ -1,0 +1,32 @@
+
+				<div  style="background-color: white;float: right !important;width: 100%; " ng-controller = "extraCtrl">
+					<div class="left-sidebar">
+						<div class="brands_products">
+							
+							<div class="brands-name">
+								<!-- <ul class="nav nav-pills nav-stacked">
+									<li ng-repeat = "list in global.peopleListBackUp" ng-click = "global.register_pop(list.id, list.name)">
+										
+											<span class="pull-right"><img src="/images/icon/online.png" style="width: 18px;height: 18px;pointer: cursor" ng-hide = "!list.online" ></span>{{list.name}}
+										 
+									
+								</ul> -->
+								<div class="chatLeft"  style="width: 284px;height: 900%;position: fixed;" >
+										<ul>
+				                    	<h2>Chat</h2>
+				                            <li ng-repeat = "list in global.peopleListBackUp" ng-click = "global.register_pop(list.id, list.name)"class="listStyle" ng-if = "list.id != global.myInfo.id">
+				                            	<img check-image ng-src="images/peopleList/{{list.id}}"   class="chatImage pull-left">
+				                            	<span  style="font-weight:bold;margin-left: 23px;">{{list.name}} gjgjkkhjhkjhk
+				                            	</span>
+				                            	<img src="/images/icon/online.png" ng-hide = "!list.online"  style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+				                            	<!-- <img src="/images/icon/online.png" style="width: 18px;height: 18px;pointer: cursor" ng-hide = "!list.online" > -->
+				                            </li>
+				                        </ul>
+				                    </div>
+						
+					
+					</div>
+				</div>
+				
+				
+			
