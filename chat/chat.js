@@ -34,7 +34,7 @@ var chat = {
 		imgSrc = 'images/peopleList/' + idForImage;
 		li = '<li class=' + who + '>'+
 				'<div class="image">' +
-					'<img class = "imgChat" src=' + imgSrc + ' onerror="imageSrcNotFound(this)" />' +
+					'<img class = "imgChat" src=' + imgSrc + ' onerror="chat.imageSrcNotFound(this)" />' +
 				'</div>' +
 				'<p class = "dynamicMsg bgColourMsg">' + msg + '</p>' +
 			'</li>';

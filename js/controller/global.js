@@ -1,4 +1,4 @@
-app.factory('global', function($http, $modal, $state){
+app.factory('global', function($http, $modal, $state, $location){
      
     var global = {};
     global.currentPage = 0;
@@ -11,6 +11,7 @@ app.factory('global', function($http, $modal, $state){
     global.professionList = professionList;
     global.skillsDetail = skillsDetail;
     global.itemsLimit = 50;
+    global.msgList = {};
     global.extractCountry = function() {
     	for (var key in countryCity.list) {
     		global.countryList.push(key);
@@ -22,8 +23,23 @@ app.factory('global', function($http, $modal, $state){
 		global.completeFilter[global.filterItem[i]] = [];
 	}
 	global.stateChange = function(state) {
-		$state.go(state);
-		//window.history.forward();
+		//$state.go(state);
+		//Session.clear();
+		/*localStorage.clear();
+                window.location = '/';
+    $location.path('/');
+		 var backlen = history.length;
+     history.go(-backlen);
+     window.location.href = loggedOutPageUrl*/
+     	this.sendRequest('/logout?id=' + chat.myInfo.id,
+	        undefined,
+	        'GET',
+	        function (data, status, headers, config){
+	          	$state.go(state);
+	        },
+	        function (data, status, headers, config) {
+	          console.log('error');
+        });
 	}
     global.sendRequest = function(url, dataObj, method, successFn, failureFn) {
     	/*var req = {
@@ -90,7 +106,7 @@ app.factory('global', function($http, $modal, $state){
 });
 
 app.run(function($rootScope, global) {
-    $rootScope.global = global;setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
+    $rootScope.global = global;//setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
     chat.global = global;
     /*$rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!(next.templateUrl == "firstPage/index.html")) {

@@ -11,7 +11,7 @@
 }
 .loginPage {
 	width: 96%;
-    margin-left: 2%;
+    margin-left: 9px !important;
     border-radius: 1%;
 }
 .container123 {

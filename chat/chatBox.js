@@ -70,7 +70,7 @@ Array.remove = function(array, from, to) {
                     }
                 }               
                 
-                var element = '<div class="popup-box chat-popup" id="'+ id +'" >';
+                /*var element = '<div class="popup-box chat-popup" id="'+ id +'" >';
                 element = element + '<div class="popup-head">';
                 element = element + '<div class="popup-head-left">'+ name +'</div>';
                 element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
@@ -84,7 +84,34 @@ Array.remove = function(array, from, to) {
                 
                 
                 //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
-                document.getElementById('chatBox').innerHTML += element;
+                document.getElementById('chatBox').innerHTML += element;*/
+                var bothId = id < chat.myInfo.id ? id.toString() + chat.myInfo.id.toString() : chat.myInfo.id.toString() + id.toString();
+                var you = 'you';
+                var me = 'me';
+                var element = '<div class="popup-box chat-popup" id="'+ id +'" >';
+                element = element + '<div class="popup-head">';
+                element = element + '<div class="popup-head-left">'+ name +'</div>';
+                element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
+                element = element + '<div style="clear: both"></div></div><div class="popup-messages">'
+                element += '<div class = "chatscreen" id="chat_screen'+ id +'">'
+                //element += '<ul class="chats">'
+                element += '<li ng-class = "{you: (global.myInfo.id === msg.senderId), me: (global.myInfo.id !== msg.senderId)}" ng-repeat = "msg in global.msgList[\''+ bothId +'\']">'+
+                                '<div class="image">' +
+                                    '<img check-image class = "imgChat" ng-src="images/peopleList/1"  />' +
+                                '</div>' +
+                                '<p class = "dynamicMsg bgColourMsg">{{msg.msg}}</p>' +
+                            '</li>'; 
+                //element += '</ul>' + '</div>' 
+                element += '<textarea class = "message"  onkeypress = "chat.enterPress(\''+ id +'\')" id="msg'+ id +'" placeholder="Write something.."></textarea>'
+                element += '</div>'+ '</div>';
+                element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+                
+                var $injector = angular.element('#chatBox').injector();
+                $injector.invoke(function($rootScope, $compile){
+                    angular.element('#' + 'chatBox').append($compile(element)($rootScope));
+                });
+                //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+                //document.getElementById('chatBox').innerHTML += element;
         
                 popups.unshift(id);
                         
@@ -101,7 +128,8 @@ Array.remove = function(array, from, to) {
                         function (data, status, headers, config){
                               insertPopup(id, name);
                               if (data.length) {
-                                    chat.insertPreviousMsg(data);
+                                    //chat.insertPreviousMsg(data);
+                                    chat.global.msgList[bothId] = data;
                               }
                         },
                         function (data, status, headers, config) {
