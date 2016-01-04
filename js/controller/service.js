@@ -51,3 +51,14 @@ app.directive("directiveWhenScrolled", function() {
     });
   };
 });
+app.directive("scrollUp", function() {
+  return function(scope, elm, attr) {
+    var raw = elm[0];
+
+    elm.bind('scroll', function() {
+      if (raw.scrollTop <= raw.offsetHeight) {
+        scope.$apply(attr.scrollUp);
+      }
+    });
+  };
+});

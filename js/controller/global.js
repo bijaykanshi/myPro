@@ -1,4 +1,4 @@
-app.factory('global', function($http, $modal, $state, $location){
+app.factory('global', function($http, $modal, $state, $location, $rootScope){
      
     var global = {};
     global.currentPage = 0;
@@ -31,15 +31,48 @@ app.factory('global', function($http, $modal, $state, $location){
 		 var backlen = history.length;
      history.go(-backlen);
      window.location.href = loggedOutPageUrl*/
-     	this.sendRequest('/logout?id=' + chat.myInfo.id,
+     	if (!chat.myInfo && chat.myInfo.id)
+     		return;
+     	chat.logout = true;
+     	chat.socket.emit('logout',{id: global.myInfo.id});
+     	if (state) {
+     		$state.go(state);
+     	}
+     	/*this.sendRequest('/logout?id=' + chat.myInfo.id,
 	        undefined,
 	        'GET',
 	        function (data, status, headers, config){
-	          	$state.go(state);
+	          	console.log('success');
 	        },
 	        function (data, status, headers, config) {
 	          console.log('error');
+        });*/
+	}
+	global.bringMoreMsg = function(id, name) {
+		var bothId = id < chat.myInfo.id ? id.toString() + chat.myInfo.id.toString() : chat.myInfo.id.toString() + id.toString();
+        var msgCount = global.msgList[bothId] ? global.msgList[bothId].length : 0;
+        this.sendRequest('/getPreviousMsg?id=' + bothId + '&start=' + msgCount,
+	        undefined,
+	        'GET',
+	        function (data, status, headers, config){
+	          	if (data.length) {
+                    //chat.insertPreviousMsg(data);
+                    var msgList = global.msgList;
+                    if (msgList[bothId]) {
+                        data.push.apply(data, msgList[bothId]);
+                    }
+                    msgList[bothId] = data;
+                    if(name) {
+                    	insertPopup(id, name);
+                    }
+              	}
+	        },
+	        function (data, status, headers, config) {
+	          if(name) {
+            	insertPopup(id, name);
+            }
         });
+		//alert('scroll');
 	}
     global.sendRequest = function(url, dataObj, method, successFn, failureFn) {
     	/*var req = {
@@ -86,6 +119,25 @@ app.factory('global', function($http, $modal, $state, $location){
 	    windowClass: windowClass
 	  });
 	};
+	global.press = function (id, msg) {
+		var bothId = id < global.myInfo.id ?  id.toString() + global.myInfo.id.toString() : global.myInfo.id.toString() + id.toString();
+		if (msg) {
+			if (!global.msgList[bothId]) {
+				global.msgList[bothId] = [];
+			}
+			global.msgList[bothId].push({id: bothId, msg: msg, senderId: id});
+		} else {
+			global.msgList[bothId].push({id: bothId, msg: global.textMsg, senderId: global.myInfo.id});
+			chat.socket.emit('msg', {msg: global.textMsg, receiver: id, sender: global.myInfo, insertDbId: bothId});
+			global.textMsg = "";
+		}
+	};
+	global.con = function (id, msg) {
+		var bothId = id < global.myInfo.id ?  id.toString() + global.myInfo.id.toString() : global.myInfo.id.toString() + id.toString();
+		var obj = {id: id, msg: msg, senderId: id};
+		$rootScope.dg = angular.copy(obj);
+		global.press($rootScope.dg.id, $rootScope.dg.msg);
+	};
     global.getPaination = function(filteredItems) {
 	    var itemsPerPage = global.itemsPerPage,
 	        pagination = [],
@@ -101,7 +153,8 @@ app.factory('global', function($http, $modal, $state, $location){
 	};
 	global.register_pop = function(id, name) {
     	register_popup(id, name);
-    } 
+    };
+
     return global;
 });
 

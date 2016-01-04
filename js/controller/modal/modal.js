@@ -45,9 +45,9 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
                   parameter.msg = commonMsg.alert_user_not_registered;
                   global.openModal('template/modals/popupMsg.html', 'popupMsg', parameter);
               } else {
-                  global.peopleListBackUp = data;
-                  global.peopleList = global.getPaination(data);
-                  global.myInfo = $scope.searchMyInfo(data);
+                  global.peopleListBackUp = data[1];
+                  global.peopleList = global.getPaination(data[1]);
+                  global.myInfo = $scope.searchMyInfo(data[1]);
                   chat.initialization(global.myInfo);
                   $state.go('peopleList');
                   $scope.close();

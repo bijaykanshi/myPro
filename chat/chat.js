@@ -3,6 +3,7 @@ var chat = {
 	 preMsg: {},
 	 initialization: function (myInfo) {
 	 	this.socket.emit('userRegistration', {userDetail: myInfo});
+	 	chat.logout = false;
 	 	this.myInfo = myInfo;
 	 },
 	 
@@ -17,6 +18,7 @@ var chat = {
 			} else {
 				insertDbId = this.myInfo.id + id;
 			}
+			chat.global.msgList[insertDbId].push({id: insertDbId, msg: message.value, senderId: this.myInfo.id});
 			this.socket.emit('msg', {msg: message.value, receiver: id, sender: this.myInfo, insertDbId: insertDbId});
 			message.value = "";
 		}
@@ -38,8 +40,12 @@ var chat = {
 				'</div>' +
 				'<p class = "dynamicMsg bgColourMsg">' + msg + '</p>' +
 			'</li>';
+		var $injector = angular.element('#chatBox').injector();
+        $injector.invoke(function($rootScope, $compile){
+            angular.element('#' + 'chat_screen' + id).append($compile(li)($rootScope));
+        });
 		chatScreen = document.getElementById('chat_screen' + id);
-		chatScreen.innerHTML += li;
+		//chatScreen.innerHTML += li;
 		window.scrollTo(0,document.body.scrollHeight);
 		chatScreen.scrollTop = chatScreen.scrollHeight;
 	},
@@ -74,4 +80,29 @@ var chat = {
 chat.socket.on('receive', function(data) {
     register_popup(data.sender.id, data.sender.name);
     chat.createChatMessage(data.msg, data.sender.id, 'me');
+    //chat.global.press(data.sender.id, data.msg);
+    /*var $injector = angular.element('#chatBox').injector();
+    var bothId = data.sender.id < chat.global.myInfo.id ?  data.sender.id.toString() + chat.global.myInfo.id.toString() : chat.global.myInfo.id.toString() + data.sender.id.toString();
+    if (!chat.global.msgList[bothId]) {
+		chat.global.msgList[bothId] = [];
+	}
+	var obj = {id: bothId, msg: data.msg, senderId: data.sender.id};
+	$injector.invoke(function($rootScope, $compile){
+        $compile(obj)($rootScope);
+    });
+	chat.global.msgList[bothId].push(obj);*/
 });
+chat.socket.on('disconnect', function(){
+ 	if (!chat.logout) {
+ 		chat.socket = io();
+ 		chat.socket.emit('userRegistration', {userDetail: chat.myInfo});
+ 	}
+ 	alert('you have been disconnect');
+ });
+ window.onbeforeunload = function(e) {
+ 	window.onunload  = function (a, b, c, d) {
+ 		console.log('kkjljs');
+ 	}
+ 	chat.global.stateChange();
+	return ' '; 
+};

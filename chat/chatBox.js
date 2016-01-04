@@ -93,7 +93,7 @@ Array.remove = function(array, from, to) {
                 element = element + '<div class="popup-head-left">'+ name +'</div>';
                 element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
                 element = element + '<div style="clear: both"></div></div><div class="popup-messages">'
-                element += '<div class = "chatscreen" id="chat_screen'+ id +'">'
+                element += '<div class = "chatscreen" id="chat_screen'+ id +'" scroll-up="global.bringMoreMsg(\''+ id +'\')">'
                 //element += '<ul class="chats">'
                 element += '<li ng-class = "{you: (global.myInfo.id === msg.senderId), me: (global.myInfo.id !== msg.senderId)}" ng-repeat = "msg in global.msgList[\''+ bothId +'\']">'+
                                 '<div class="image">' +
@@ -102,7 +102,9 @@ Array.remove = function(array, from, to) {
                                 '<p class = "dynamicMsg bgColourMsg">{{msg.msg}}</p>' +
                             '</li>'; 
                 //element += '</ul>' + '</div>' 
-                element += '<textarea class = "message"  onkeypress = "chat.enterPress(\''+ id +'\')" id="msg'+ id +'" placeholder="Write something.."></textarea>'
+                element += '<textarea class = "message"  onkeypress = "chat.enterPress(\''+ id +'\')" id="msg'+ id +'"  placeholder="Write something.."></textarea>'
+                //element += '<textarea class = "message"   id="msg'+ id +'" ng-model="global.textMsg"  ng-keypress="($event.which === 13)?global.press(\''+ id +'\'):0" placeholder="Write something.."></textarea>'
+                
                 element += '</div>'+ '</div>';
                 element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
                 
@@ -122,20 +124,25 @@ Array.remove = function(array, from, to) {
             {
                 var bothId = id < chat.myInfo.id ? id.toString() + chat.myInfo.id.toString() : chat.myInfo.id.toString() + id.toString();
                 if (!chat.preMsg[bothId]) {
-                    chat.global.sendRequest('/getPreviousMsg?id=' + bothId,
+                    /*chat.global.sendRequest('/getPreviousMsg?id=' + bothId + '&start=0&end=100',
                         undefined,
                         'GET',
                         function (data, status, headers, config){
                               insertPopup(id, name);
                               if (data.length) {
                                     //chat.insertPreviousMsg(data);
-                                    chat.global.msgList[bothId] = data;
+                                    var msgList = chat.global.msgList;
+                                    if (msgList[bothId]) {
+                                        data.push.apply(data, msgList[bothId]);
+                                    }
+                                    msgList[bothId] = data;
                               }
                         },
                         function (data, status, headers, config) {
                           insertPopup(id, name);
                           console.log('error');
-                        });
+                        });*/
+                    chat.global.bringMoreMsg(id, name);
                     chat.preMsg[bothId] = true;
                 } else {
                     insertPopup(id, name);
