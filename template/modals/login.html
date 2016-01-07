@@ -8,7 +8,7 @@
             
              <input production-qty class="form-control" type="text" ng-switch-default ng-model = "loginData[log]" placeholder=  "{{log}}">
         </div>
-        <input class="btn btn-sub" type="submit" ng-click = "loginFun('login')" value="Login">
+        <input class="btn btn-sub" type="submit" name="login" ng-click = "loginFun('login')" value="Login">
         
     </form> 
      <form class="row form loginPage">
@@ -89,6 +89,6 @@
            
         </table>
 
-        <input class="btn btn-sub" type="submit" ng-click = "loginFun('signUp')" value="{{showLogin ? 'Sign Up': 'Update'}}">
+        <input class="btn btn-sub" type="submit" name="signup" ng-click = "loginFun('signUp')" value="{{showLogin ? 'Sign Up': 'Update'}}">
         
     </form></div> 

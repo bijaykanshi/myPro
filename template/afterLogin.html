@@ -56,10 +56,10 @@
 								
 								<li><a href="javascript:void(0);" ng-class="{'active':selectedTab === 'home'}"  ng-click="selectedTab = 'home'">Home</a></li>
 								
-								<li ><a data-hover="Update Profile"  ng-class="{'active':selectedTab === 'updateProfile'}" ng-click = "global.openModal('template/modals/login.html', 'loginSignUp', 'update');selectedTab = 'updateProfile'">Update Profile</a></li>
-								<li><a  ng-class="{'active':selectedTab === 'google'}" ng-click = "global.openModal('template/modals/map.html', 'mapCtrl', undefined, 'extraLarge-Modal');selectedTab = 'google'">Track People By google Map</a></li>
-								<li><a  ng-class="{'active':selectedTab === 'contactUs'}" ng-click = "global.openModal('template/modals/contactUs.html', 'loginSignUp', undefined, 'extraLarge-Modal');selectedTab = 'contactUs'">Contact</a></li>
-								<li><a  ng-class="{'active':selectedTab === 'logout'}" ng-click = "global.stateChange('home');selectedTab = 'logout'">Logout</a></li>
+								<li ><a data-hover="Update Profile" name="update" ng-class="{'active':selectedTab === 'updateProfile'}" ng-click = "global.openModal('template/modals/login.html', 'loginSignUp', 'update');selectedTab = 'updateProfile'">Update Profile</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'google'}" name="track" ng-click = "global.openModal('template/modals/map.html', 'mapCtrl', undefined, 'extraLarge-Modal');selectedTab = 'google'">Track People By google Map</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'contactUs'}" name="contact" ng-click = "global.openModal('template/modals/contactUs.html', 'loginSignUp', undefined, 'extraLarge-Modal');selectedTab = 'contactUs'">Contact</a></li>
+								<li><a  ng-class="{'active':selectedTab === 'logout'}" name = "logout" ng-click = "global.stateChange('home');selectedTab = 'logout'">Logout</a></li>
 								<!-- <li><a ui-sref=".login" ng-class="{'active':selectedTab === 'login'}" ng-click="selectedTab = 'login'">Login or Sign Up</a></li> -->
 							</ul>
 						</div>

@@ -158,7 +158,7 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
     return global;
 });
 
-app.run(function($rootScope, global) {
+app.run(function($rootScope, $state, global) {
     $rootScope.global = global;//setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
     chat.global = global;
     /*$rootScope.$on("$routeChangeStart", function (event, next, current) {
@@ -166,4 +166,29 @@ app.run(function($rootScope, global) {
             $location.path("/login");
         }
     })*/
+	global.sendRequest('./js/data.json',
+        undefined,
+        'GET',
+        function (data, status, headers, config) {
+        	angular.forEach(data.route, function (value, key) { 
+		          var state = {
+		            "url": value.url,
+		            "views": {}
+		          };
+		          if (value.onEnter) {
+		          		
+		          }
+		          angular.forEach(value.views, function (view) {
+		            state.views[view.view] = {
+		              templateUrl : view.templateUrl,
+		            };
+		          });
+		          $stateProviderRef.state(value.state, state);
+		    });
+		    $state.go("home"); 
+          	console.log('success');
+        },
+        function (data, status, headers, config) {
+          console.log('error');
+    });
 });

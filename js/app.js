@@ -1,6 +1,8 @@
+var $urlRouterProviderRef = null;
+var $stateProviderRef = null;
 var app = angular.module('app', ["ui.router", "ui.router", "ui.bootstrap",
-"ui.bootstrap.tpls", "ui.bootstrap.modal", "ui.bootstrap.popover"])
-    app.config(function($stateProvider, $urlRouterProvider){
+"ui.bootstrap.tpls", "ui.bootstrap.modal", "ui.bootstrap.popover"]);
+    /*app.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('peopleList', {
             url: "/peopleList",
@@ -25,11 +27,9 @@ var app = angular.module('app', ["ui.router", "ui.router", "ui.bootstrap",
         .state('home', {
             url: "",
             views: {
-               
                 "page": {
-                    templateUrl: "firstPage/index.html"
+                    templateUrl: "coach/index.html"
                 }
-                
             },
             onEnter: [
             "$modal",
@@ -48,4 +48,8 @@ var app = angular.module('app', ["ui.router", "ui.router", "ui.bootstrap",
 
         })
        
-    })
+    })*/
+app.config(function($stateProvider, $urlRouterProvider) {
+   $urlRouterProviderRef = $urlRouterProvider;
+   $stateProviderRef = $stateProvider;
+})

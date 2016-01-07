@@ -1,0 +1,46 @@
+{  
+    "route": [  
+        {  
+            "state": "peopleList",  
+            "url": "/peopleList",  
+            "views":  [
+                {
+                    "view": "page",
+                    "templateUrl": "template/afterLogin.html"
+                },
+                {
+                    "view": "sideBar@peopleList",
+                    "templateUrl": "template/sideBar.html"
+                },
+                {
+                    "view": "body@peopleList",
+                    "templateUrl": "template/listOfPeople.html"
+                },
+                {
+                    "view": "rightSideBar@peopleList",
+                    "templateUrl": "template/rightSideBar.html"
+                },
+                {
+                    "view": "footer@peopleList",
+                    "templateUrl": "template/footer.html"
+                }
+            ]
+        },
+        {  
+            "state": "home",  
+            "url": "",  
+            "views":  [
+                {
+                    "view": "page",
+                    "templateUrl": "firstPage/index.html"
+                }
+            ],
+            "onEnter": [
+                {
+                    "controller": "loginSignUp",
+                    "templateUrl": "template/modals/login.html"
+                }
+            ]
+        }
+    ]  
+}
