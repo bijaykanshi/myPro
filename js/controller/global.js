@@ -175,8 +175,20 @@ app.run(function($rootScope, $state, global) {
 		            "url": value.url,
 		            "views": {}
 		          };
+		          var enter;
 		          if (value.onEnter) {
-		          		
+		          		enter = function($modal) {
+			              $modal.open({
+			                controller: "loginSignUp",
+			                templateUrl: 'template/modals/login.html',
+			                resolve: {
+			                    parameter: function(){
+			                        return undefined
+			                    }
+			                },
+			              })
+			            }
+			            state.onEnter = ["$modal", enter];
 		          }
 		          angular.forEach(value.views, function (view) {
 		            state.views[view.view] = {
