@@ -204,3 +204,19 @@ app.run(function($rootScope, $state, global) {
           console.log('error');
     });
 });
+/*app.factory('coach', function($http, $rootScope) {
+    var coach = {};
+    $rootScope.coach = coach;
+    $rootScope.global.sendRequest('/mongo/getMainPage',
+			undefined,
+			'GET',
+			function (data, status, headers, config){
+				alert('success');
+			},
+			function (data, status, headers, config) {
+				console.log('error');
+			});
+	return coach;
+});*/
+
+

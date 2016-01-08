@@ -1,0 +1,55 @@
+
+    <div >
+          <div class="modal-header">
+              <button type="button" ng-click="close()" name="close" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Google Map</h4>
+          </div>
+      
+                
+          <div class="modal-body">
+                <div class="row">
+                    
+                      <div class="col-sm-3" style="background-color: white; ">
+                          <div class="left-sidebar">
+                              <h2>Profession</h2>
+
+                              <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Email</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                       <tr  ng-repeat = "list in mapCluster track by $index" ng-click = "global.openModal('template/modals/showProfile.html', 'showProfileCtrl', list);" style="cursor: pointer">
+                                          <td>{{list.name}}</td>
+                                          <td>{{list.email}}</td>
+                                          <td><button class="btn btn-primary">show Profile</td>
+                                      </tr>
+                              
+                                  </tbody>
+                             
+                              </table>
+                            </div>
+                      </div>
+                      <div class="col-sm-9 padding-right" style="background-color: white;">
+                          <div class="features_items"><!--features_items-->
+                              <h2 class="title text-center ">Features Items</h2>
+                             
+                              <p><div id="googleMap" class="col-sm-3" >google Map</div></p>
+                          </div>
+                  
+                      </div><!--features_items-->
+                  </div>
+            
+          
+
+            
+          </div>
+          <div class="footerClose">
+                <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button>
+            </div>
+         
+    </div>
+

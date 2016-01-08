@@ -32,7 +32,7 @@
             "views":  [
                 {
                     "view": "page",
-                    "templateUrl": "firstPage/index.html"
+                    "templateUrl": "coach/firstPage/index.html"
                 }
             ],
             "onEnter": [
