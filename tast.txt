@@ -32,3 +32,8 @@ question
 	disable of back button in logout..
 	perform operation while user click on leave this page
 
+
+mongo related.....task...
+
+ what if user enter "" while editing the information...
+

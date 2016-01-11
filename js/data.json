@@ -28,11 +28,15 @@
         },
         {  
             "state": "home",  
-            "url": "",  
+            "url": "/:param",  
             "views":  [
                 {
                     "view": "page",
                     "templateUrl": "coach/firstPage/index.html"
+                },
+                {
+                    "view": "content@home",
+                    "templateUrl": ""
                 }
             ],
             "onEnter": [

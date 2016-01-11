@@ -1,0 +1,15 @@
+.imgResize {
+	width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.imageOnly {
+	width: 125px;
+    height: 127px;
+    cursor: pointer;
+}
+.imgResizeBottom {
+    width: 32px;
+    height: 31px;
+    cursor: pointer;
+}

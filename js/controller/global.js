@@ -107,12 +107,15 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 			alert( "failure message: " + JSON.stringify({data: data}));
 		});	
     };
-    global.openModal = function(templateUrl, controllerName, parameter, windowClass){
+    global.openModal = function(templateUrl, controllerName, parameter, windowClass, extra){
 	  $modal.open({
 	    templateUrl: templateUrl,
 	    resolve: {
 	            parameter: function(){
 	                return parameter
+	            },
+	            extra: function(){
+	                return extra
 	            }
 	        },
 	    controller: controllerName,
@@ -176,7 +179,7 @@ app.run(function($rootScope, $state, global) {
 		            "views": {}
 		          };
 		          var enter;
-		          if (value.onEnter) {
+		          /*if (value.onEnter) {
 		          		enter = function($modal) {
 			              $modal.open({
 			                controller: "loginSignUp",
@@ -189,34 +192,28 @@ app.run(function($rootScope, $state, global) {
 			              })
 			            }
 			            state.onEnter = ["$modal", enter];
-		          }
+		          }*/
 		          angular.forEach(value.views, function (view) {
-		            state.views[view.view] = {
+		          	if (view.templateUrl === "") {
+		          		view.templateUrl = function ($stateParams) {
+		                    return 'coach/template/' +  $stateParams.param + '.html'
+		                }
+		          	} 
+		          	state.views[view.view] = {
 		              templateUrl : view.templateUrl,
 		            };
 		          });
 		          $stateProviderRef.state(value.state, state);
 		    });
-		    $state.go("home"); 
+			$state.go('home', {param : 'home'}, {reload: false});
+		    //$state.go("home"); 
           	console.log('success');
         },
         function (data, status, headers, config) {
           console.log('error');
     });
 });
-/*app.factory('coach', function($http, $rootScope) {
-    var coach = {};
-    $rootScope.coach = coach;
-    $rootScope.global.sendRequest('/mongo/getMainPage',
-			undefined,
-			'GET',
-			function (data, status, headers, config){
-				alert('success');
-			},
-			function (data, status, headers, config) {
-				console.log('error');
-			});
-	return coach;
-});*/
-
+String.prototype.capFirst = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 

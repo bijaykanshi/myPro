@@ -1,0 +1,31 @@
+
+    <div >
+          <div class="modal-header">
+              <button type="button" ng-click="close()" name="close" class="close" data-dismiss="modal">&times;</button>
+              <h2 class="modal-title">{{header}}</h2>
+          </div>
+      
+                
+          <div class="modal-body">
+                <div class="row">
+                    <table class="table">
+                        <tbody>
+                             <tr  ng-repeat = "(key, value) in parameter">
+                                <td class="col-md-2">{{dispData(key)}}</td>
+                                <td><textarea class="form-control" ng-model = "parameter[key]" rows="5" id="comment"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+          </div>
+          
+          <div class="footerClose">
+               <!--  <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button> -->
+                <img class="imageOnly" ng-click="close()" src="./coach/firstPage/imgOwn/close.png" alt="">
+                <img class="imageOnly" ng-click="reset()" src="./coach/firstPage/imgOwn/reset.jpg" alt="">
+                <img class="imageOnly" ng-click="save()" src="./coach/firstPage/imgOwn/save.jpg" alt="">
+         
+         
+            </div>
+    </div>
+

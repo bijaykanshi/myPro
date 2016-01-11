@@ -1,5 +1,4 @@
-app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, coach, parameter) {
-   coach.abc();
+app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, parameter) {
    $scope.login = ['email', 'password'];
    $scope.signUp = ['name', 'email', 'password', 'contact_No', 'Address', 'district', 'state','country','Pin_Code', 'Profession','Skills', 'msg'];
    $scope.signUpLabel = parameter ? commonMsg.label_updateProfle : commonMsg.label_signUp;
