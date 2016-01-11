@@ -19,7 +19,7 @@
                                 <td class="col-md-2">{{dispData(key)}}</td>
                                 <td><textarea class="form-control" ng-model = "parameter[key]" rows="5" id="comment"></textarea></td>
                             </tr> -->
-                          <p class="desc1"  ng-repeat = "(key, value) in parameter" ng-if = "key !== 'imgSrc'">{{value}}</p>
+                          <p class="desc1"  ng-repeat = "(key, value) in parameter" ng-if = "['imgSrc', 'image'].indexOf(key) == -1">{{value}}</p>
                       </div>
                   </div>
                   <!-- <div class="row">

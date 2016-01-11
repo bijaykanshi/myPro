@@ -194,19 +194,23 @@ app.run(function($rootScope, $state, global) {
 			            state.onEnter = ["$modal", enter];
 		          }*/
 		          angular.forEach(value.views, function (view) {
-		          	if (view.templateUrl === "") {
+		          	/*if (view.templateUrl === "") {
 		          		view.templateUrl = function ($stateParams) {
 		                    return 'coach/template/' +  $stateParams.param + '.html'
 		                }
-		          	} 
-		          	state.views[view.view] = {
-		              templateUrl : view.templateUrl,
-		            };
+		          	} */
+		          	var obj = {};
+		          	if (view.controller) {
+		          		obj.controller = view.controller;
+		          	}
+		          	obj.templateUrl = view.templateUrl;
+		          	state.views[view.view] = obj;
 		          });
 		          $stateProviderRef.state(value.state, state);
 		    });
-			$state.go('home', {param : 'home'}, {reload: false});
-		    //$state.go("home"); 
+			//$state.go('home', {param : 'home'}, {reload: false});
+		    //$state.go("home");
+		    $state.go("coach.home");
           	console.log('success');
         },
         function (data, status, headers, config) {

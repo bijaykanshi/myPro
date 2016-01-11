@@ -13,3 +13,12 @@
     height: 31px;
     cursor: pointer;
 }
+.adjustWidth {
+	width: 100% !important;
+}
+.imgWidth {
+	width: 90px;
+    height: 86px;
+    border-radius: 52px;
+    float: left;
+}

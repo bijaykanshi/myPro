@@ -4,7 +4,9 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.struct = {};
     coach.homeData = [];
     coach.repeatAll = {};
+    coach.tab = 'home';
     coach.mainPage;
+    coach.currentLinkClick = {};
     $rootScope.global.sendRequest('/mongo/getMainPage',
 		undefined,
 		'GET',
@@ -15,6 +17,9 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
 			coach.repeatAll['footer'] = data[0].footer;
 			coach.struct.latestNews = coach.repeatAll['footer'].latestNews.structure.split('_');
 			coach.struct.teachingSupport = coach.repeatAll['footer'].teachingSupport.structure.split('_');
+			//for dynamic content
+			coach.dataBackUp = data;
+			coach.linkArray = coach.mainPage;
 		},
 		function (data, status, headers, config) {
 			console.log('error');
