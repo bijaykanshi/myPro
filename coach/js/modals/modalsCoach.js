@@ -45,3 +45,15 @@ app.controller('displayCoachCtrl', function ($scope, $modalInstance, coach, para
         $modalInstance.dismiss('cancel');
     };
 });
+app.controller('editAddDynamicContentCtrl', function ($scope, $modalInstance, coach, parameter, extra) {
+    $scope.header = extra || '';
+    $scope.parameter = parameter || {};
+    $scope.dec = extra;
+    if (extra === 'new') {
+        $scope.parameter = {};
+        $scope.parameter.listItem = [];
+    }
+    $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});

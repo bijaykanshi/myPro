@@ -2,6 +2,7 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     var coach = {};
     $rootScope.coach = coach;
     coach.struct = {};
+    coach.struct.dynamic = {};
     coach.homeData = [];
     coach.repeatAll = {};
     coach.tab = 'home';
@@ -20,6 +21,10 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
 			//for dynamic content
 			coach.dataBackUp = data;
 			coach.linkArray = coach.mainPage;
+			var arr = data[0].dynamic_structure.split('@');
+			coach.struct.dynamic.upper = arr[0].split('_');
+			coach.struct.dynamic.listItem = arr[1].split('_');
+			coach.struct.dynamic.innerItem = arr[2].split('_');
 		},
 		function (data, status, headers, config) {
 			console.log('error');
