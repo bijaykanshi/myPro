@@ -12,6 +12,7 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
     global.skillsDetail = skillsDetail;
     global.itemsLimit = 50;
     global.msgList = {};
+    global.msg = commonMsg;
     global.extractCountry = function() {
     	for (var key in countryCity.list) {
     		global.countryList.push(key);
@@ -75,32 +76,16 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 		//alert('scroll');
 	}
     global.sendRequest = function(url, dataObj, method, successFn, failureFn) {
-    	/*var req = {
-			 method: method,
-			 url: url,
-			 headers: {
-			   'Content-Type': {'Content-Type': 'application/x-www-form-urlencoded'}
-			 },
-			 data: dataObj
-		}
-		$http(req).then(function(data, status, headers, config){
-				if (successFn) {
-					successFn(data, status, headers, config);
-				}
-			}, function(data, status, headers, config){
-				if (failureFn) {
-					failureFn(data, status, headers, config);
-				}
-				alert( "failure message: " + JSON.stringify({data: data}));
-			});
-*/
+    	global.isLoading = true;
     	var res = $http[method.toLocaleLowerCase()](url, dataObj);
 		res.success(function(data, status, headers, config) {
+			global.isLoading = false;
 			if (successFn) {
 				successFn(data, status, headers, config);
 			}
 		});
 		res.error(function(data, status, headers, config) {
+			global.isLoading = false;
 			if (failureFn) {
 				failureFn(data, status, headers, config);
 			}

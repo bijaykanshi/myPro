@@ -238,3 +238,6 @@ i {
     border-radius: 18px;
     margin-left: 31px;
 }
+.help-block.help-block-error.custom-date-error{
+    color: #a94442;
+}

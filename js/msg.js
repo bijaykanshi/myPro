@@ -7,6 +7,12 @@ var commonMsg = {
 	label_signUp: 'New User????? Sign Up Please',
 	label_updateProfle: 'Update Your Profile',
 	map_error: 'your browser doesnt support geolocation',
+	error_length_greater_30: 'Length of Link can not be greater than 30',
+	error_required: 'This Field can not be empty',
+	disp_addlistItem: 'Add List Item',
+	disp_addInnerItem: 'Add Inner Item',
+	disp_creation_of_link: 'Creation of Link',
+	disp_link_name: 'Link Name',
 	edit_content: {
 		link: 	'Name Of Link',
 		header: 'Header',
@@ -17,3 +23,4 @@ var commonMsg = {
 		middle: 'Content of bottom header'
 	}
 }
+var msg = commonMsg;

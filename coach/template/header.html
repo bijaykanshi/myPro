@@ -12,16 +12,12 @@
 				     	<div class="menu">
 				     		<ul>
 						    	<li ng-class="{'active': coach.tab === 'home'}" ng-click = "coach.tab = 'home'"><a href="javascript:void(0)" ui-sref="coach.home">Home</a></li>
-						    	<li ng-repeat="item in coach.linkArray" ng-if = "item.type !== 'static'" ng-click="coach.currentLinkClick = item"><a ui-sref="coach.about">{{item.link}}</a></li>
-						    	<!-- <li ng-class="{'active': coach.tab === 'about'}" ng-click = "coach.tab = 'about'"><a  ng-class="{'active': coach.tab === 'about'}" href="javascript:void(0)" ui-sref="coach.about">About</a></li>
-						    	<li ng-class="{'active': coach.tab === 'staff'}" ng-click = "coach.tab = 'staff'"><a ui-sref="coach.staff">Staff</a></li>
-						    	<li ng-class="{'active': coach.tab === 'programs'}" ng-click = "coach.tab = 'programs'"><a ui-sref="coach.programs">Programs</a></li>
-						    	<li ng-class="{'active': coach.tab === 'contact'}" ng-click = "coach.tab = 'contact'"><a ui-sref="coach.contact">Contact</a></li> -->
+						    	<li ng-repeat="item in coach.linkArray" ng-if = "item.type !== 'static'" ng-click="coach.currentLinkClick = item"><a ui-sref="coach.about" name="item.link">{{item.link}}</a></li>
 						    	<div class="clear"></div>
 			     			</ul>
 				     	</div>
 				     	<ul class="follow_icon">
-				     		<li><a href="javascript:void(0)" style="opacity: 1;"><img src="./coach/firstPage/images/fb.png" alt=""></a></li>
+				     		<li><a href="javascript:void(0)" style="opacity: 1;" ng-click = "global.openModal('template/modals/popupMsg.html', 'smallInputCoach', 'link');" ><img class="imgResizeBottom" src="./coach/firstPage/imgOwn/add.png" alt=""></a></li>
 							<!-- <li><a href="javascript:void(0)" style="opacity: 1;"><img src="./coach/firstPage/images/fb.png" alt=""></a></li>
 							<li><a href="javascript:void(0)" style="opacity: 1;"><img src="./coach/firstPage/images/tw.png" alt=""></a></li>
 							<li><a href="javascript:void(0)" style="opacity: 1;"><img src="./coach/firstPage/images/rss.png" alt=""></a></li> -->

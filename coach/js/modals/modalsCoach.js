@@ -50,10 +50,51 @@ app.controller('editAddDynamicContentCtrl', function ($scope, $modalInstance, co
     $scope.parameter = parameter || {};
     $scope.dec = extra;
     if (extra === 'new') {
-        $scope.parameter = {};
+        coach.struct.dynamic.upper.forEach(function(x) {
+          $scope.parameter[x] = '';
+        });
         $scope.parameter.listItem = [];
+    }
+    $scope.createListItem = function () {
+        var obj = {};
+        coach.struct.dynamic.listItem.forEach(function(x) {
+            obj[x] = '';
+        });
+        obj.innerItem = [];
+        $scope.parameter.listItem.push(obj);
+    }
+    $scope.createInnerItem = function (index) {
+        var obj = {};
+        coach.struct.dynamic.innerItem.forEach(function(x) {
+            obj[x] = '';
+        });
+        $scope.parameter.listItem[index].innerItem.push(obj);
     }
     $scope.close = function () {
         $modalInstance.dismiss('cancel');
     };
+});
+app.controller('smallInputCoach', function ($scope, $modalInstance, global, coach, parameter) {
+    $scope.header = msg.disp_creation_of_link;
+    $scope.labelName = msg.disp_link_name;
+    $scope.takeInput = true;
+    $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+    };
+    $scope.create = function() {
+        global.sendRequest('/coach/getDummyJson',
+            undefined,
+            'GET',
+            function (data, status, headers, config) {
+                data.link = $scope.inputText;
+                //coach.dummyJson = data;
+                coach.mainPage.push(data);
+                var link = document.getElementsByName(data.link)[0];
+                if (link) 
+                    link.click();
+            },
+            function (data, status, headers, config) {
+                console.log('error');
+        });
+    }
 });

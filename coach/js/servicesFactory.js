@@ -8,7 +8,7 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.tab = 'home';
     coach.mainPage;
     coach.currentLinkClick = {};
-    $rootScope.global.sendRequest('/mongo/getMainPage',
+    $rootScope.global.sendRequest('/coach/getMainPage',
 		undefined,
 		'GET',
 		function (data, status, headers, config) {
@@ -21,10 +21,17 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
 			//for dynamic content
 			coach.dataBackUp = data;
 			coach.linkArray = coach.mainPage;
-			var arr = data[0].dynamic_structure.split('@');
+			var arr = data[0].dynamic_structure.split('@'),
+				upper = arr[0].split('_'),
+				listItem = arr[1].split('_'),
+				innerItem = arr[2].split('_');
+			upper.forEach(function(x) {
+				coach.struct.dynamic.x = '';
+			});
 			coach.struct.dynamic.upper = arr[0].split('_');
 			coach.struct.dynamic.listItem = arr[1].split('_');
 			coach.struct.dynamic.innerItem = arr[2].split('_');
+			coach.commonMsg = commonMsg;
 		},
 		function (data, status, headers, config) {
 			console.log('error');
