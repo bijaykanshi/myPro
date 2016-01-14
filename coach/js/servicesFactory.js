@@ -8,6 +8,7 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.tab = 'home';
     coach.mainPage;
     coach.currentLinkClick = {};
+    $rootScope.img = {};
     $rootScope.global.sendRequest('/coach/getMainPage',
 		undefined,
 		'GET',

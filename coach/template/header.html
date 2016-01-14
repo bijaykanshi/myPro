@@ -12,7 +12,7 @@
 				     	<div class="menu">
 				     		<ul>
 						    	<li ng-class="{'active': coach.tab === 'home'}" ng-click = "coach.tab = 'home'"><a href="javascript:void(0)" ui-sref="coach.home">Home</a></li>
-						    	<li ng-repeat="item in coach.linkArray" ng-if = "item.type !== 'static'" ng-click="coach.currentLinkClick = item"><a ui-sref="coach.about" name="item.link">{{item.link}}</a></li>
+						    	<li ng-repeat="item in coach.linkArray" ng-if = "item.type !== 'static'" ng-click="coach.currentLinkClick = item"><a ui-sref="coach.about" name="{{item.link}}">{{item.link}}</a></li>
 						    	<div class="clear"></div>
 			     			</ul>
 				     	</div>

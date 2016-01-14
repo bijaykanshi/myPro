@@ -13,6 +13,12 @@ app.controller('homeCoachCtrl', function ($scope, global, coach) {
         $scope.mapCluster = tindle;
     }*/
 });
+app.controller('dynamicCoachCtrl', function ($scope, global, coach) {
+  
+   $scope.img = {};
+   $scope.hideShow = {};
+   $scope.colorClasses = ['red', 'blue', 'green'];
+});
 /*app.controller('headerCoachCtrl', function ($scope, global, coach) {
     $rootScope.global.sendRequest('/mongo/getMainPage',
     undefined,

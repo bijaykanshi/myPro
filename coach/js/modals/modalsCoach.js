@@ -1,3 +1,9 @@
+app.controller('loginSignUpCoach', function ($scope, $modalInstance, $state, global, parameter) {
+    $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
 app.controller('editShowCoachCtrl', function ($scope, $modalInstance, coach, parameter, extra) {
 	var isObj = typeof parameter === 'string' ? false : true;
   	$scope.header = isObj ? 'Edit Content' : 'Add Content';
@@ -45,36 +51,17 @@ app.controller('displayCoachCtrl', function ($scope, $modalInstance, coach, para
         $modalInstance.dismiss('cancel');
     };
 });
-app.controller('editAddDynamicContentCtrl', function ($scope, $modalInstance, coach, parameter, extra) {
+app.controller('editAddDynamicContentCtrl', function ($scope, $modalInstance, $timeout, global, coach, parameter, extra) {
     $scope.header = extra || '';
     $scope.parameter = parameter || {};
-    $scope.dec = extra;
-    if (extra === 'new') {
-        coach.struct.dynamic.upper.forEach(function(x) {
-          $scope.parameter[x] = '';
-        });
-        $scope.parameter.listItem = [];
-    }
-    $scope.createListItem = function () {
-        var obj = {};
-        coach.struct.dynamic.listItem.forEach(function(x) {
-            obj[x] = '';
-        });
-        obj.innerItem = [];
-        $scope.parameter.listItem.push(obj);
-    }
-    $scope.createInnerItem = function (index) {
-        var obj = {};
-        coach.struct.dynamic.innerItem.forEach(function(x) {
-            obj[x] = '';
-        });
-        $scope.parameter.listItem[index].innerItem.push(obj);
-    }
+    $timeout(function() {
+        global.isLoading = false;
+    }, 10000);
     $scope.close = function () {
         $modalInstance.dismiss('cancel');
     };
 });
-app.controller('smallInputCoach', function ($scope, $modalInstance, global, coach, parameter) {
+app.controller('smallInputCoach', function ($scope, $modalInstance, $timeout, global, coach, parameter) {
     $scope.header = msg.disp_creation_of_link;
     $scope.labelName = msg.disp_link_name;
     $scope.takeInput = true;
@@ -89,9 +76,13 @@ app.controller('smallInputCoach', function ($scope, $modalInstance, global, coac
                 data.link = $scope.inputText;
                 //coach.dummyJson = data;
                 coach.mainPage.push(data);
-                var link = document.getElementsByName(data.link)[0];
-                if (link) 
-                    link.click();
+                $scope.close();
+                $timeout(function() {
+                    var link = document.getElementsByName(data.link)[0];
+                    if (link) 
+                        link.click();
+                }, 1000);
+                
             },
             function (data, status, headers, config) {
                 console.log('error');

@@ -67,7 +67,8 @@
             "views":  [
                 {
                     "view": "body@coach",
-                    "templateUrl": "coach/template/about.html"
+                    "templateUrl": "coach/template/about.html",
+                    "controller": "dynamicCoachCtrl"
                 }
             ]
         },
