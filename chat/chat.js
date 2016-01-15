@@ -7,7 +7,7 @@ var chat = {
 	 	this.myInfo = myInfo;
 	 },
 	 
-	 enterPress: function (id) {
+	 enterPress: function (id) { 
 	 	if(event.keyCode == 13) {
 			var message = document.getElementById('msg' + id),
 				insertDbId;
