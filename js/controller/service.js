@@ -121,4 +121,9 @@ app.directive('confirmClick', ['$q', 'dialogModal', function($q, dialogModal) {
           });
           return modalInstance;
       }
-  }])
+  }]);
+ app.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);

@@ -9,20 +9,29 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.mainPage;
     coach.currentLinkClick = {};
     $rootScope.img = {};
+    coach.setEditLink = function (objRef, key, dec) {
+    	if (dec) {
+    		coach.objRef = objRef;
+      		coach.key = key;
+    	} else {
+    		coach.key = undefined;
+    	}
+      	
+   	}
     $rootScope.global.sendRequest('/coach/getMainPage',
 		undefined,
 		'GET',
 		function (data, status, headers, config) {
-			coach.mainPage = data[0].content;
-			coach.repeatAll['home'] = coach.mainPage[0].innerItem;
+			coach.mainPage = data.content;
+			coach.repeatAll['home'] = coach.mainPage.innerItem;
 			coach.struct.home = coach.mainPage[0].structure.split('_');
-			coach.repeatAll['footer'] = data[0].footer;
+			coach.repeatAll['footer'] = data.footer;
 			coach.struct.latestNews = coach.repeatAll['footer'].latestNews.structure.split('_');
 			coach.struct.teachingSupport = coach.repeatAll['footer'].teachingSupport.structure.split('_');
 			//for dynamic content
 			coach.dataBackUp = data;
 			coach.linkArray = coach.mainPage;
-			var arr = data[0].dynamic_structure.split('@'),
+			var arr = data.dynamic_structure.split('@'),
 				upper = arr[0].split('_'),
 				listItem = arr[1].split('_'),
 				innerItem = arr[2].split('_');

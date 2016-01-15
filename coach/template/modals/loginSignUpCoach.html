@@ -1,0 +1,94 @@
+<div class="modal-footer" >
+        <button type="button" class="btn btn-default" name="close" ng-click="close()">Close</button>
+    </div>
+ <form class="row form loginPage" id = "loginPage" ng-show = 'showLogin'>
+        <h3>Login to Your Account</h3>
+        <div class="col-md-12 col-xs-12 form-group" ng-repeat = "log in login" ng-switch on="log">
+            <input production-qty class="form-control" type="{{log}}"  ng-switch-when='password' ng-model = "loginData[log]" placeholder=  "{{log}}">
+            
+             <input production-qty class="form-control" type="text" ng-switch-default ng-model = "loginData[log]" placeholder=  "{{log}}">
+        </div>
+        <input class="btn btn-sub" type="submit" name="login" ng-click = "loginFun('login')" value="Login">
+        
+    </form> 
+     <form class="row form loginPage">
+        <h3>{{signUpLabel}}</h3>
+         <table class="table">
+          <tbody>
+             <tr  ng-repeat = "log in signUp" ng-switch on="log">
+                <td><h4>{{log}}</h4></td>
+                <td>
+                    <textarea rows="9" cols = "50" class=" form-control" ng-switch-when='msg' ng-model = "global.myInfo[log]" placeholder="About yourself"></textarea>
+                    <div ng-switch-when='Profession'>
+                      <div class="filters" style="display: block;">
+                        <div class="filter-list" >
+                           
+                            <ul class="group" >
+                              <li class="heading" ng-show = "global.completeFilter['Profession'].length">
+                                  <img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter['Profession'] = []" >
+                                  <span>Profession:</span><i class="i-cross-sky-blue"></i>
+                              </li>
+                              <li ng-repeat = "innerItem in global.completeFilter['Profession']">
+                                  <span>{{innerItem}}</span><!--  <i class="fa fa-close iconClose"></i> --> 
+                                  <img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter['Profession'].splice(global.completeFilter['Profession'].indexOf(innerItem), 1)">
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <input  type="text" class="form-control" placeholder="Type Your Profession" ng-model="searchProfession" ng-focus = "hideSearchBox['profession'] = false;global.itemsLimit = 50"/>
+                            <div class="searchBox loginProfessionSearchBox" ng-hide="hideSearchBox['profession'] || !global.professionList.length" directive-when-scrolled="loadMore()">
+                              <button class = "btn-default pull-right" ng-click = "closeSearchBox('profession')">close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+                                <ul>
+                                    <li    ng-repeat="list in global.professionList | filter: searchProfession |limitTo: global.itemsLimit track by $index " ng-click = "setProfession(list)">
+                                      <span  style="font-weight:bold;">{{list}}</span>
+                                      <img src="/images/icon/checked.png" ng-show = "global.completeFilter.Profession.indexOf(list) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+                                    </li>
+                                </ul>
+                            </div>
+                  
+                          </ul>
+                    </div>
+                    <div ng-switch-when='Skills'>
+                      <div class="filters" style="display: block;">
+                        <div class="filter-list" >
+                            
+                            <ul class="group" >
+                              <li class="heading" ng-show = "global.completeFilter['Skills'].length">
+                                  <img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter['Skills'] = []" >
+                                  <span>Skills:</span><i class="i-cross-sky-blue"></i>
+                              </li>
+                              <li ng-repeat = "innerItem in global.completeFilter['Skills']">
+                                  <span>{{innerItem}}</span><!--  <i class="fa fa-close iconClose"></i> --> 
+                                  <img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ng-click = "global.completeFilter['Skills'].splice(global.completeFilter['Skills'].indexOf(innerItem), 1)">
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <input  type="text" class="form-control" placeholder="Skills" ng-model="searchSkills" ng-focus = "hideSearchBox['skills'] = false;global.itemsLimit = 50" />
+                            <div class="searchBox loginSkillsSearchBox" ng-hide="hideSearchBox['skills'] || !global.skillsDetail.length" directive-when-scrolled="loadMore()">
+                              <button class = "btn-default pull-right" ng-click = "closeSearchBox('skills')">Close<img src="/images/icon/cross.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
+                                <ul>
+                                    <li    ng-repeat="skill in global.skillsDetail | filter: searchSkills |limitTo: global.itemsLimit track by $index " ng-click = "setSkills(skill)">
+                                      <span  style="font-weight:bold;">{{skill}}</span>
+                                      <img src="/images/icon/checked.png" ng-show = "global.completeFilter.Skills.indexOf(skill) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+                                    </li>
+                                </ul>
+                            </div>
+                  
+                  
+                          </ul>
+                    </div>
+            
+                    <input  class="form-control" type="text" ng-switch-default ng-model = "global.myInfo[log]" placeholder=  "{{log}}">
+                </td>
+            </tr>
+      
+          </tbody>
+           
+        </table>
+
+        <input class="btn btn-sub" type="submit" name="signup" ng-click = "loginFun('signUp')" value="{{showLogin ? 'Sign Up': 'Update'}}">
+        
+    </form></div> 

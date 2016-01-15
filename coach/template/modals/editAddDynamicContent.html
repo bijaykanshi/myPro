@@ -1,0 +1,187 @@
+
+    <div ng-init="colorClasses = ['red', 'blue', 'green'];hideShow = {};img = {}">
+          <div class="modal-header">
+              <button type="button" ng-click="close()" name="close" class="close" data-dismiss="modal">&times;</button>
+              <h2 class="modal-title">{{header}}</h2>
+          </div>
+          <div class="modal-body">
+                <!-- 
+<img src="./coach/firstPage/images/pic4.jpg" alt="" style="
+    width: 62px;
+    height: 52px;
+    float: left;
+    border-radius: 42px;
+"> -->
+              <div>
+                <div class="main-bottom">
+                  <div  class="wrap">
+                    <div class="content-bottom">
+                      <div class="col_1_of_3 span_1_of_3 adjustWidth"  > 
+                        <!-- <h3 ng-bind-html="coach.currentLinkClick.header">
+                          <summernote height="70" ng-model = "coach.currentLinkClick.header"></summernote>
+                        </h3> -->
+                        <h2 ng-bind-html="coach.currentLinkClick.header">
+                        </h2>
+                        <img name = "edit" ng-click = "hideShow.header = !hideShow.header;img.header = hideShow.header ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.header}}" class="imgResize"  altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                        <div ng-show = "hideShow.header">
+                          <summernote  ng-model = "coach.currentLinkClick.header"></summernote>
+                        </div>
+                        <p class="desc1" ng-bind-html="coach.currentLinkClick.desc">
+                        </p>
+                        <img name = "edit" ng-click = "hideShow.body = !hideShow.body;img.body = hideShow.body ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.body}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                        <div ng-show = "hideShow.body">
+                          <summernote height="70" ng-model = "coach.currentLinkClick.desc"></summernote>
+                        </div>
+
+
+                        <p class="desc1" ng-hide="!readMore" ng-bind-html="coach.currentLinkClick.readMore">
+                        </p>
+                        <img name = "edit" ng-hide="!readMore" ng-click = "hideShow.readMore = !hideShow.readMore;img.readMore = hideShow.readMore ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.readMore}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                        <div ng-show = "hideShow.readMore">
+                          <summernote height="70" ng-model = "coach.currentLinkClick.readMore"></summernote>
+                        </div>
+                        <img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/up.jpg" alt="">
+                        <img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/down.jpg" alt="">
+                      </div>
+                      <div class="clear"></div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="wrap"></div>
+                 <div class="clear"></div>
+
+
+                 <div class="main-bottom">
+                  <div class="wrap">
+                    <div class="content-bottom">
+                      <div class="col_1_of_3 grid_1_of_3 " ng-repeat = "listItem in coach.currentLinkClick.listItem">
+                        <img  class = "imgWidth" altsrc = "./coach/firstPage/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
+
+
+                        <h2 ng-bind-html="listItem.header">
+                        </h2>
+                        <img name = "edit" ng-click = "hideShow.nextHeader = !hideShow.nextHeader;img.nextHeader = hideShow.nextHeader ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.nextHeader}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                        <div ng-show = "hideShow.nextHeader">
+                          <summernote height="70" ng-model = "listItem.header"></summernote>
+                        </div>
+                        
+
+                        <p ng-bind-html="listItem.desc">
+                        </p>
+                        <img name = "edit" ng-click = "hideShow.desc = !hideShow.desc;img.desc = hideShow.desc ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.desc}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                        <div ng-show = "hideShow.desc">
+                          <summernote height="70" ng-model = "listItem.desc"></summernote>
+                        </div>
+                        
+                        <ul>
+                                <li ng-repeat = "innerItem in listItem.innerItem">
+                                  <div class="numb_list" ng-class = "colorClasses[$index % 3]">{{$index + 1}}</div>
+                                  <div class="extra_wrapper">
+                                      <p class="link1" ng-click = "global.openModal('coach/template/modals/display.html', 'displayCoachCtrl', innerItem, 'extraLarge-Modal', 'Information')">
+                                        <a href="javascript:void(0)" ng-bind-html="innerItem.side"></a>
+                                        <img name = "edit" ng-click = "hideShow.side = !hideShow.side;img.side = hideShow.side ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.side}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                                <div ng-show = "hideShow.side">
+                                  <summernote height="70" ng-model = "innerItem.side"></summernote>
+                                </div>
+                                      </p>
+                                      
+                                      <p ng-bind-html="innerItem.middle">
+                                        <img name = "edit" ng-click = "hideShow.middle = !hideShow.middle;img.middle = hideShow.middle ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.middle}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                                <div ng-show = "hideShow.middle">
+                                  <summernote height="70" ng-model = "innerItem.middle"></summernote>
+                                </div>
+                                        
+                                      </p>
+                                  </div>
+                                </li>
+                            </ul>
+                            <div ng-class= "{'clear':  $index % 2 == 1}"></div>
+                      </div>
+
+                    </div>
+                    <div class="clear"></div> 
+                  </div>
+                    <div class="wrap"></div>
+                </div>
+
+              </div>
+
+          </div>
+          <div  class="footerClose">
+               <!--  <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button> -->
+                <img class="imageOnly" ng-click="close()" src="./coach/firstPage/imgOwn/close.png" alt="">
+                <img class="imageOnly" ng-click="reset()" src="./coach/firstPage/imgOwn/reset.jpg" alt="">
+                <img class="imageOnly" ng-click="save()" src="./coach/firstPage/imgOwn/save.jpg" alt="">
+            </div>
+    </div>
+
+
+
+  <!--   <div ng-init="colorClasses = ['red', 'blue', 'green']">
+  <button class="btn btn-primary" ng-click = "global.isLoading = true;global.openModal('coach/template/modals/editAddDynamicContent.html', 'editAddDynamicContentCtrl', 'edit', 'extraLarge-Modal', global.msg.label_modal_header);">
+    <span>{{global.msg.label_edit_this_page}}</span>
+    <img class="imgResize" src="./webdata/imgOwn/edit.jpg" alt="">
+  </button>
+  <div class="main-bottom">
+    <div  class="wrap">
+      <div class="content-bottom">
+        <div class="col_1_of_3 span_1_of_3 adjustWidth">
+          <h3>{{coach.currentLinkClick.header}}
+            <textarea class="form-control" ng-model = "coach.currentLinkClick.header" rows="1" ></textarea>
+          </h3>
+          <img class = "imgWidth" altsrc = "./coach/firstPage/imgOwn/noImage.jpg" ng-src="{{item.image}}" title="imag-name" check-image>
+          <p class="desc1">{{coach.currentLinkClick.desc}}
+            <textarea class="form-control" ng-model = "coach.currentLinkClick.desc" rows="5" ></textarea>
+          </p>
+          <p class="desc1" ng-hide="!readMore">{{coach.currentLinkClick.readMore}}
+            <textarea class="form-control" ng-model = "coach.currentLinkClick.readMore" rows="5"></textarea>
+          </p>
+          <img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./coach/firstPage/imgOwn/up.jpg" alt="">
+          <img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./coach/firstPage/imgOwn/down.jpg" alt="">
+        </div>
+        <div class="clear"></div> 
+      </div>
+    </div>
+  </div>
+  <div class="wrap"></div>
+   <div class="clear"></div>
+
+
+   <div class="main-bottom">
+    <div class="wrap">
+      <div class="content-bottom">
+        <div class="col_1_of_3 grid_1_of_3 " ng-repeat = "listItem in coach.currentLinkClick.listItem">
+          <img  class = "imgWidth" altsrc = "./coach/firstPage/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
+          <h2>{{listItem.header}}
+            <textarea class="form-control" ng-model = "listItem.header" rows="1" ></textarea>
+          </h2>
+          <p>{{listItem.desc}}
+            <textarea class="form-control" ng-model = "listItem.desc" rows="5" ></textarea>
+          </p>
+          <ul>
+                  <li ng-repeat = "innerItem in listItem.innerItem">
+                    <div class="numb_list" ng-class = "colorClasses[$index % 3]">{{$index + 1}}</div>
+                    <div class="extra_wrapper">
+                        <p class="link1" ng-click = "global.openModal('coach/template/modals/display.html', 'displayCoachCtrl', innerItem, 'extraLarge-Modal', 'Information')">
+                          <a href="javascript:void(0)">{{innerItem.side}}</a>
+                        </p>
+                        <textarea class="form-control" ng-model = "innerItem.side" rows="5" ></textarea>
+                        <p>{{innerItem.middle}}
+                          <textarea class="form-control" ng-model = "innerItem.middle" rows="5" ></textarea>
+                        </p>
+                    </div>
+                  </li>
+              </ul>
+              <div ng-class= "{'clear':  $index % 2 == 1}"></div>
+        </div>
+
+      </div>
+      <div class="clear"></div> 
+    </div>
+      <div class="wrap"></div>
+  </div>
+
+</div>
+
+
+ -->

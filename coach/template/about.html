@@ -2,37 +2,40 @@
     <div class="main-bottom">
       <div  class="wrap">
         <div class="content-bottom">
+          	<button class="btn btn-primary" ng-click = "editThisPage = !editThisPage;editImg = editThisPage ? 'save.jpg' : 'edit.jpg';!editThisPage && saveJson()"><span>{{editThisPage ? global.msg.label_save_page : global.msg.label_edit_page}}</span><img class="imgResize" src="./webdata/imgOwn/{{editImg}}" altsrc = "./webdata/imgOwn/edit.jpg" check-image></button>
           <div class="col_1_of_3 span_1_of_3 adjustWidth"  > 
-            <!-- <h3 ng-bind-html-unsafe="coach.currentLinkClick.header">
+            <!-- <h3 ng-bind-html="coach.currentLinkClick.header">
               <summernote height="70" ng-model = "coach.currentLinkClick.header"></summernote>
             </h3> -->
-            <h2 ng-bind-html-unsafe="coach.currentLinkClick.header">
-            </h2>
-            <img name = "edit" ng-click = "hideShow.header = !hideShow.header;img.header = hideShow.header ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.header}}" class="imgResize"  altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-            <div ng-show = "hideShow.header">
-              <summernote  ng-model = "coach.currentLinkClick.header"></summernote>
-            </div>
-            <p class="desc1" ng-bind-html-unsafe="coach.currentLinkClick.desc">
-            </p>
-            <img name = "edit" ng-click = "hideShow.body = !hideShow.body;img.body = hideShow.body ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.body}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-            <div ng-show = "hideShow.body">
-              <summernote height="70" ng-model = "coach.currentLinkClick.desc"></summernote>
-            </div>
+	            <h2 ng-bind-html="coach.currentLinkClick.header | to_trusted">
+	            </h2>
+	            <img class = "imgWidth" altsrc = "./webdata/imgOwn/noImage.jpg" ng-src="{{item.image}}" title="imag-name" check-image>
+					
+	            <img name = "edit" ng-show = "editThisPage" ng-click = "hideShow.header = !hideShow.header;img.header = hideShow.header ? 'done.jpg': 'edit.jpg';coach.setEditLink(coach.currentLinkClick, 'header', hideShow.header)" ng-src="./webdata/imgOwn/{{img.header}}" class="imgResize"  altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+	            
+	            <p class="desc1" ng-bind-html="coach.currentLinkClick.desc | to_trusted">
+	            </p>
+	            <img name = "edit" ng-show = "editThisPage" ng-click = "hideShow.body = !hideShow.body;img.body = hideShow.body ? 'done.jpg': 'edit.jpg';coach.setEditLink(coach.currentLinkClick, 'desc', hideShow.body)" ng-src="./webdata/imgOwn/{{img.body}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+	           
 
 
-            <p class="desc1" ng-hide="!readMore" ng-bind-html-unsafe="coach.currentLinkClick.readMore">
-            </p>
-            <img name = "edit" ng-hide="!readMore" ng-click = "hideShow.readMore = !hideShow.readMore;img.readMore = hideShow.readMore ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.readMore}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-            <div ng-show = "hideShow.readMore">
-              <summernote height="70" ng-model = "coach.currentLinkClick.readMore"></summernote>
-            </div>
-            <img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/up.jpg" alt="">
-            <img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/down.jpg" alt="">
+	            <p class="desc1" ng-hide="!readMore" class="sample-show-hide" ng-bind-html="coach.currentLinkClick.readMore | to_trusted">
+	            </p>
+	            <img name = "edit" ng-show = "editThisPage && readMore" ng-click = "hideShow.readMore = !hideShow.readMore;img.readMore = hideShow.readMore ? 'done.jpg': 'edit.jpg';coach.setEditLink(coach.currentLinkClick, 'readMore', hideShow.readMore)" ng-src="./webdata/imgOwn/{{img.readMore}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+	           
+	            <img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/up.jpg" alt="">
+	            <img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/down.jpg" alt="">
           </div>
-          <div class="clear"></div> 
+          
+          <div class="clear"></div>
+          <div ng-show = "coach.key" class="sample-show-hide">
+          	<summernote height = "70"  ng-model = "coach.objRef[coach.key]"></summernote>
+        </div> 
         </div>
       </div>
+
     </div>
+
     <div class="wrap"></div>
      <div class="clear"></div>
 
@@ -41,44 +44,44 @@
       <div class="wrap">
         <div class="content-bottom">
           <div class="col_1_of_3 grid_1_of_3 " ng-repeat = "listItem in coach.currentLinkClick.listItem">
-            <img  class = "imgWidth" altsrc = "./coach/firstPage/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
+            <img  class = "imgWidth" altsrc = "./webdata/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
 
-
-            <h2 ng-bind-html-unsafe="listItem.header">
+            <img name = "delete" class="imgResize" ng-show = "editThisPage" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && coach.currentLinkClick.listItem.splice($index, 1);"  confirm-click = "{{global.msg.confirm_delete}}">
+            <h2 ng-bind-html="listItem.header | to_trusted">
             </h2>
-            <img name = "edit" ng-click = "hideShow.nextHeader = !hideShow.nextHeader;img.nextHeader = hideShow.nextHeader ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.nextHeader}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-            <div ng-show = "hideShow.nextHeader">
-              <summernote height="70" ng-model = "listItem.header"></summernote>
-            </div>
+            <img name = "edit" ng-show = "editThisPage" ng-click = "hideShow['nextHeader' + $index] = !hideShow['nextHeader' + $index];img['nextHeader' + $index] = hideShow['nextHeader' + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(listItem, 'header', hideShow['nextHeader' + $index])" ng-src="./webdata/imgOwn/{{img['nextHeader' + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+            
             
 
-            <p ng-bind-html-unsafe="listItem.desc">
+            <p ng-bind-html="listItem.desc | to_trusted">
             </p>
-            <img name = "edit" ng-click = "hideShow.desc = !hideShow.desc;img.desc = hideShow.desc ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.desc}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-            <div ng-show = "hideShow.desc">
-              <summernote height="70" ng-model = "listItem.desc"></summernote>
-            </div>
+            <img name = "edit" ng-show = "editThisPage" ng-click = "hideShow['desc' + $index] = !hideShow['desc' + $index];img['desc' + $index] = hideShow['desc' + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(listItem, 'desc', hideShow['desc' + $index])" ng-src="./webdata/imgOwn/{{img['desc' + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+            
             
             <ul>
                     <li ng-repeat = "innerItem in listItem.innerItem">
-                      <div class="numb_list" ng-class = "colorClasses[$index % 3]">{{$index + 1}}</div>
-                      <div class="extra_wrapper">
-                          <p class="link1" ng-click = "global.openModal('coach/template/modals/display.html', 'displayCoachCtrl', innerItem, 'extraLarge-Modal', 'Information')">
-                            <a href="javascript:void(0)" ng-bind-html-unsafe="innerItem.side"></a>
-                            <img name = "edit" ng-click = "hideShow.side = !hideShow.side;img.side = hideShow.side ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.side}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-                    <div ng-show = "hideShow.side">
-                      <summernote height="70" ng-model = "innerItem.side"></summernote>
-                    </div>
-                          </p>
+                      	<div class="numb_list" ng-class = "colorClasses[$index % 3]">{{$index + 1}}</div>
+                      	<div class="extra_wrapper">
+                      		<img name = "delete" class="imgResize" ng-show = "editThisPage" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && listItem.innerItem.splice($index, 1);"  confirm-click = "global.msg.confirm_delete">
+
+
+                          	<p class="link1" ng-click = "!editThisPage && global.openModal('coach/template/modals/display.html', 'displayCoachCtrl', innerItem, 'extraLarge-Modal', 'Information')">
+                            	<a href="javascript:void(0)" ng-bind-html="innerItem.side | to_trusted"></a>
+                            	<img name = "edit" ng-show = "editThisPage" ng-click = "hideShow['side' + $parent.$index + $index] = !hideShow['side' + $parent.$index + $index];img['side' + $parent.$index + $index] = hideShow['side' + $parent.$index + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(innerItem, 'side', hideShow['side' + $parent.$index + $index])" ng-src="./webdata/imgOwn/{{img['side' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                    
+                          	</p>
                           
-                          <p ng-bind-html-unsafe="innerItem.middle">
-                            <img name = "edit" ng-click = "hideShow.middle = !hideShow.middle;img.middle = hideShow.middle ? 'up.jpg': 'edit.jpg';" ng-src="./webdata/imgOwn/{{img.middle}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
-                    <div ng-show = "hideShow.middle">
-                      <summernote height="70" ng-model = "innerItem.middle"></summernote>
-                    </div>
-                            
-                          </p>
-                      </div>
+                          	<p ng-bind-html="innerItem.middle | to_trusted">
+                          	</p>
+                          	<img name = "edit" ng-show = "editThisPage" ng-click = "hideShow['middle' + $parent.$index + $index] = !hideShow['middle' + $parent.$index + $index];img['middle' + $parent.$index + $index] = hideShow['middle' + $parent.$index + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(innerItem, 'middle', hideShow['middle' + $parent.$index + $index])" ng-src="./webdata/imgOwn/{{img['middle' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+
+                            <img ng-init = "img['updown' + $parent.$index + $index] = 'down.jpg'" name = "updown" ng-click = "hideShow['updown' + $parent.$index + $index] = !hideShow['updown' + $parent.$index + $index];img['updown' + $parent.$index + $index] = hideShow['updown' + $parent.$index + $index] ? 'up.jpg': 'down.jpg';" ng-src="./webdata/imgOwn/{{img['updown' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+
+                          	<p  ng-show = "hideShow['updown' + $parent.$index + $index]" class="sample-show-hide" ng-bind-html="innerItem.desc | to_trusted">
+                          	</p>
+                           	<img ng-show = "hideShow['updown' + $parent.$index + $index] && editThisPage"  name = "edit" ng-click = "hideShow.middle = !hideShow.middle;img.middle = hideShow.middle ? 'done.jpg': 'edit.jpg';coach.setEditLink(innerItem, 'desc', hideShow.middle)" ng-src="./webdata/imgOwn/{{img.middle}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+
+                      	</div>
                     </li>
                 </ul>
                 <div ng-class= "{'clear':  $index % 2 == 1}"></div>

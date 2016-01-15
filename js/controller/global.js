@@ -93,7 +93,7 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 		});	
     };
     global.openModal = function(templateUrl, controllerName, parameter, windowClass, extra){
-      global.isLoading = true;
+      //global.isLoading = true;
 	  $modal.open({
 	    templateUrl: templateUrl,
 	    resolve: {
