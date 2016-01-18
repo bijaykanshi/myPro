@@ -92,21 +92,26 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 			alert( "failure message: " + JSON.stringify({data: data}));
 		});	
     };
-    global.openModal = function(templateUrl, controllerName, parameter, windowClass, extra){
+    global.openModal = function(templateUrl, controllerName, parameter, windowClass, extra, back){
       //global.isLoading = true;
-	  $modal.open({
-	    templateUrl: templateUrl,
-	    resolve: {
-	            parameter: function(){
-	                return parameter
-	            },
-	            extra: function(){
-	                return extra
-	            }
-	        },
-	    controller: controllerName,
-	    windowClass: windowClass
-	  });
+      var obj = {
+            templateUrl: templateUrl,
+            resolve: {
+                    parameter: function(){
+                        return parameter
+                    },
+                    extra: function(){
+                        return extra
+                    }
+                },
+        controller: controllerName,
+        windowClass: windowClass
+      }
+      if (back) {
+            obj.backdrop = 'static';
+            obj.keyboard = false;
+      }
+	  $modal.open(obj);
 	};
 	global.press = function (id, msg) {
 		var bothId = id < global.myInfo.id ?  id.toString() + global.myInfo.id.toString() : global.myInfo.id.toString() + id.toString();
@@ -260,7 +265,7 @@ app.run(function($rootScope, $state, global, $builder) {
 	          	var enter;
 	          	if (value.onEnter) {
 	          		enter = function($modal) {
-		              	global.openModal(value.onEnter.templateUrl, value.onEnter.controller, value.onEnter.parameter, value.onEnter.windowClass, value.onEnter.extra)
+		              	global.openModal(value.onEnter.templateUrl, value.onEnter.controller, value.onEnter.parameter, value.onEnter.windowClass, value.onEnter.extra, true);
 		            }
 		            state.onEnter = ["$modal", enter];
 	          	}

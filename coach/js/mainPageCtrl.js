@@ -62,3 +62,9 @@ app.controller('dynamicCoachCtrl', function ($scope, global, coach) {
       console.log('error');
   });
 });*/
+
+app.controller('DefaultCtrl', [
+    '$scope', 'global', function($scope, global) {
+       console.log('success');
+    }
+  ]);

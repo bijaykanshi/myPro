@@ -19,13 +19,26 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
    $scope.hideSearchBox = {};
    $scope.hideSearchBox['profession'] = true;
    $scope.hideSearchBox['skills'] = true;
+   $scope.closeOrgBox = function() {
+      $scope.showOrg = false;
+   }
    $scope.setOrg = function (item) {
       $scope.showOrg = false;
       $scope.org = item.org;
+      coach.itemInfo = item;
       //alert('got it');
    }
    $scope.getWebsiteJson = function () {
-      alert('got it');
+      global.sendRequest('/coach/getWebsiteJson?email = ' + coach.itemInfo.email,
+        undefined,
+        'GET',
+        function (data, status, headers, config){
+            coach.siteJsonProcessing(data);
+            $scope.close();
+        },
+        function (data, status, headers, config) {
+          console.log('error');
+        });
    }
    $scope.closeSearchBox = function (value) {
       $scope.hideSearchBox[value] = true;
@@ -74,7 +87,7 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
               }
           } else {
             if (!data.error) {
-                coach.myInfo = angular.copy(global.myInfo);
+                coach.itemInfo = angular.copy(global.myInfo);
                 global.completeFilter.Profession = global.completeFilter.Skills = [];
                 if (dec === 'coach') {
                    $scope.close();
@@ -123,6 +136,10 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
       return returnData;
   };
    $scope.close = function () {
+        /*if (!coach.itemInfo && $scope.selectOrg) {
+            global.openModal('template/modals/popupMsg.html', 'popupMsg', {msg : commonMsg.alert_Plz_Select_Org});
+            return;
+        }*/
         $modalInstance.dismiss('cancel');
     };
   $scope.contact = {};

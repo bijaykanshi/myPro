@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <button type="button" ng-click="close()" name="close" class="close" data-dismiss="modal">&times;</button>
+    <button type="button" ng-hide = "selectOrg" ng-click="close()" name="close" class="close" data-dismiss="modal">&times;</button>
    <!--  <h4 class="modal-title">Google Map</h4> -->
 </div>      
 <div class="modal-body">
@@ -28,6 +28,7 @@
              <input class="btn btn-sub" type="submit" name="login" ng-click = "getWebsiteJson()" value="Go">
             
             <div class="searchBox searchBoxCoach" ng-show="showOrg" directive-when-scrolled="coach.orgItem < coach.orgList.length ? coach.orgItem += 50 : coach.orgItem">
+            <button class = "btn-default pull-right" ng-click = "closeOrgBox()">close<img src="/webdata/imgOwn/delete.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
                 <ul>
                     <li    ng-repeat="item in coach.orgList | filter: org |limitTo: coach.orgItem track by $index " ng-click = "setOrg(item)">
                       <span  style="font-weight:bold;">{{item.org}}</span>
@@ -36,9 +37,11 @@
                 </ul>
             </div>
     </div>
-    <div class="col-sm-8 padding-right" style="background-color: white;">
+     <h1>{{signUpLabel}}</h1><br/><br/>
+     <button class="btn btn-primary" ng-click = "showSignUp = !showSignUp"><span>{{showSignUp ? 'Done' : 'Sign Up'}}</span></button>
+    <div class="col-sm-8 padding-right" style="background-color: white;" ng-show = "showSignUp">
         <div class="features_items">
-              <h3>{{signUpLabel}}</h3>
+             
                <div class="form-group" ng-form name="myForm" >
                <table class="table">
           <tbody>
@@ -131,7 +134,7 @@
     </div>
 </div>
 <div class="footerClose">
-    <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button>
+    <button type="button" ng-hide = "selectOrg" class="btn btn-default" ng-click="close()" data-dismiss="modal">Close</button>
 </div>
 
 
