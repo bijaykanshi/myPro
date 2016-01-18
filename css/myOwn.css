@@ -82,15 +82,18 @@ width: 44%;
     z-index: 10;
 }
 .loginProfessionSearchBox {
-    margin-top: 190%;
+    margin-top: 76%;
     z-index: 10;
+    width: 75%;
 }
 .skillsSearchBox {
-    margin-top: 221px;
+    margin-top: 84%;
+    width: 75%;
     z-index: 10;
 }
 .loginSkillsSearchBox {
-    margin-top: 181%;
+    margin-top: 84%;
+    width: 75%;
     z-index: 10;
 }
 .countrySearchBox {

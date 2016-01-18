@@ -1,8 +1,17 @@
-app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, parameter) {
+app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, coach, parameter, extra, constant) {
    $scope.login = ['email', 'password'];
-   $scope.signUp = ['name', 'email', 'password', 'contact_No', 'Address', 'district', 'state','country','Pin_Code', 'Profession','Skills', 'msg'];
-   $scope.signUpLabel = parameter ? commonMsg.label_updateProfle : commonMsg.label_signUp;
-   $scope.showLogin = parameter ? false : true;
+   //$scope.signUp = ['name', 'email', 'password', 'doj' 'contact_No', 'Address', 'district', 'state','country', 'org', 'Pin_Code', 'Profession','Skills', 'msg'];
+   if (parameter === 'coach') {
+      $scope.selectOrg = true;
+      $scope.loginLabel = msg.label_select_org;
+      $scope.signUpLabel = commonMsg.label_signUp_coach;
+      $scope.showLogin = false;
+   } else {
+      $scope.signUpLabel = parameter ? commonMsg.label_updateProfle : commonMsg.label_signUp;
+      $scope.showLogin = parameter ? false : true;
+      $scope.loginLabel = msg.label_login;
+   }
+    
    $scope.loginData = {};
    $scope.skillProfession = {};
    $scope.skillProfession.skills = [];
@@ -10,6 +19,14 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
    $scope.hideSearchBox = {};
    $scope.hideSearchBox['profession'] = true;
    $scope.hideSearchBox['skills'] = true;
+   $scope.setOrg = function (item) {
+      $scope.showOrg = false;
+      $scope.org = item.org;
+      //alert('got it');
+   }
+   $scope.getWebsiteJson = function () {
+      alert('got it');
+   }
    $scope.closeSearchBox = function (value) {
       $scope.hideSearchBox[value] = true;
     }
@@ -56,9 +73,18 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
                   $scope.loginData = {};
               }
           } else {
-              global.myInfo = {};
-              parameter.msg = commonMsg.alert_signUp_success;
-              global.openModal('template/modals/popupMsg.html', 'popupMsg', parameter);
+            if (!data.error) {
+                coach.myInfo = angular.copy(global.myInfo);
+                global.completeFilter.Profession = global.completeFilter.Skills = [];
+                if (dec === 'coach') {
+                   $scope.close();
+                }
+                global.myInfo = {};
+                parameter.msg = commonMsg.alert_signUp_success;
+            } else {
+                parameter.msg = commonMsg.error_server;
+            }
+            global.openModal('template/modals/popupMsg.html', 'popupMsg', parameter);
           }
         },
         function (data, status, headers, config) {

@@ -146,6 +146,99 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 
     return global;
 });
+app.factory('constant', function($http, $modal, $state, $location, $rootScope){
+     
+    var constant = {};
+    $rootScope.constant = constant;
+    
+    constant.signUpForm = [
+    	{
+    		"placeholder": "Name",
+    		"label": "Name",
+    		"key": "name"
+    	},
+    	{
+    		"type": "checkbox",
+    		"placeholder": "Sex",
+    		"label": "Sex",
+    		"key": "sex",
+    		"class": "checkbox-inline"
+    	},
+    	{
+    		"type": "email",
+    		"placeholder": "Email",
+    		"label": "Email",
+    		"key": "email"
+    	},
+    	{
+    		"type": "password",
+    		"placeholder": "Password",
+    		"label": "Password",
+    		"key": "password"
+    	},
+    	{
+    		"type": "date",
+    		"placeholder": "Date Of Birth",
+    		"label": "Date Of Birth",
+    		"key": "doj"
+    	},
+    	{
+    		"type": "number",
+    		"placeholder": "Contact No",
+    		"label": "Contact No",
+    		"key": "contact_No"
+    	},
+    	{
+    		"placeholder": "Address",
+    		"label": "Address",
+    		"key": "Address"
+    	},
+    	{
+    		"placeholder": "District",
+    		"label": "District",
+    		"key": "district"
+    	},
+    	{
+    		"placeholder": "State",
+    		"label": "State",
+    		"key": "state"
+    	},
+    	{
+    		"placeholder": "Country",
+    		"label": "Country",
+    		"key": "country"
+    	},
+    	{
+    		"placeholder": "Your Orgnization",
+    		"label": "Your Orgnization",
+    		"key": "org"
+    	},
+    	{
+    		"type": "number",
+    		"placeholder": "Pin Code",
+    		"label": "Pin Code",
+    		"key": "Pin_Code"
+    	},
+    	{
+    		"placeholder": "Profession",
+    		"label": "Profession",
+    		"key": "Profession"
+    	},
+    	{
+    		"placeholder": "Skills",
+    		"label": "Skills",
+    		"key": "Skills"
+    	},
+    	{
+    		"type": "textarea",
+    		"placeholder": "About Your self",
+    		"label": "About Your self",
+    		"key": "msg"
+    	}
+    ]
+
+    return constant;
+});
 
 app.run(function($rootScope, $state, global, $builder) {
     $rootScope.global = global;//setTimeout(function(){ global.b = 'omkjksjdjo889367262877l'; }, 2500000);
@@ -160,26 +253,18 @@ app.run(function($rootScope, $state, global, $builder) {
         'GET',
         function (data, status, headers, config) {
         	angular.forEach(data.route, function (value, key) { 
-		          var state = {
-		            "url": value.url,
-		            "views": {}
-		          };
-		          var enter;
-		          /*if (value.onEnter) {
-		          		enter = function($modal) {
-			              $modal.open({
-			                controller: "loginSignUp",
-			                templateUrl: 'template/modals/login.html',
-			                resolve: {
-			                    parameter: function(){
-			                        return undefined
-			                    }
-			                },
-			              })
-			            }
-			            state.onEnter = ["$modal", enter];
-		          }*/
-		          angular.forEach(value.views, function (view) {
+	          	var state = {
+	            	"url": value.url,
+	            	"views": {}
+	          	};
+	          	var enter;
+	          	if (value.onEnter) {
+	          		enter = function($modal) {
+		              	global.openModal(value.onEnter.templateUrl, value.onEnter.controller, value.onEnter.parameter, value.onEnter.windowClass, value.onEnter.extra)
+		            }
+		            state.onEnter = ["$modal", enter];
+	          	}
+	          	angular.forEach(value.views, function (view) {
 		          	/*if (view.templateUrl === "") {
 		          		view.templateUrl = function ($stateParams) {
 		                    return 'coach/template/' +  $stateParams.param + '.html'
@@ -191,8 +276,8 @@ app.run(function($rootScope, $state, global, $builder) {
 		          	}
 		          	obj.templateUrl = view.templateUrl;
 		          	state.views[view.view] = obj;
-		          });
-		          $stateProviderRef.state(value.state, state);
+	          	});
+	          	$stateProviderRef.state(value.state, state);
 		    });
 			//$state.go('home', {param : 'home'}, {reload: false});
 		    //$state.go("home");

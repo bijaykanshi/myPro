@@ -22,3 +22,11 @@
     border-radius: 52px;
     float: left;
 }
+.searchBoxCoach {
+    margin-top: 19%;
+    width: 273px;
+}
+.inputCoach {
+    width: 80%;
+    display: -webkit-inline-box;
+}

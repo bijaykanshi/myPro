@@ -1,7 +1,7 @@
 <div ng-init="colorClasses = ['red', 'blue', 'green'];hideShow = {};img = {}">
     <div class="main-bottom">
-      <div  class="wrap">
-        <div class="content-bottom">
+      <div  class="wrap" >
+        <div class="content-bottom" style="background-color: white !important;">
           	<button class="btn btn-primary" ng-click = "editThisPage = !editThisPage;editImg = editThisPage ? 'save.jpg' : 'edit.jpg';!editThisPage && saveJson()"><span>{{editThisPage ? global.msg.label_save_page : global.msg.label_edit_page}}</span><img class="imgResize" src="./webdata/imgOwn/{{editImg}}" altsrc = "./webdata/imgOwn/edit.jpg" check-image></button>
           <div class="col_1_of_3 span_1_of_3 adjustWidth"  > 
             <!-- <h3 ng-bind-html="coach.currentLinkClick.header">
@@ -28,7 +28,7 @@
           </div>
           
           <div class="clear"></div>
-          <div ng-show = "coach.key" class="sample-show-hide">
+          <div ng-show = "coach.key && editThisPage" class="sample-show-hide">
           	<summernote height = "70"  ng-model = "coach.objRef[coach.key]"></summernote>
         </div> 
         </div>
@@ -36,13 +36,13 @@
 
     </div>
 
-    <div class="wrap"></div>
+    <!-- <div class="wrap"></div> -->
      <div class="clear"></div>
 
 
      <div class="main-bottom">
-      <div class="wrap">
-        <div class="content-bottom">
+      <div class="wrap" style="background-color: white;">
+        <div class="content-bottom" style="background-color: white !important;">
           <div class="col_1_of_3 grid_1_of_3 " ng-repeat = "listItem in coach.currentLinkClick.listItem">
             <img  class = "imgWidth" altsrc = "./webdata/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
 
@@ -60,7 +60,7 @@
             
             <ul>
                     <li ng-repeat = "innerItem in listItem.innerItem">
-                      	<div class="numb_list" ng-class = "colorClasses[$index % 3]">{{$index + 1}}</div>
+                      	<div class="numb_list" style="background-color: antiquewhite;">{{$index + 1}}</div>
                       	<div class="extra_wrapper">
                       		<img name = "delete" class="imgResize" ng-show = "editThisPage" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && listItem.innerItem.splice($index, 1);"  confirm-click = "global.msg.confirm_delete">
 
@@ -90,7 +90,7 @@
         </div>
         <div class="clear"></div> 
       </div>
-        <div class="wrap"></div>
+        
     </div>
 
   </div>

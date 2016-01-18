@@ -44,12 +44,13 @@
                     "controller": "homeCoachCtrl"
                 }
             ],
-            "onEnter": [
-                {
-                    "controller": "loginSignUp",
-                    "templateUrl": "template/modals/login.html"
-                }
-            ]
+            "onEnter": {
+                "controller": "loginSignUp",
+                "templateUrl": "template/modals/login.html",
+                "windowClass": "extraLarge-Modal",
+                "parameter": "coach"
+            }
+            
         },
         {  
             "state": "coach.home",  
@@ -63,42 +64,12 @@
         },
         {  
             "state": "coach.about",  
-            "url": "/about",  
+            "url": "/dynamic",  
             "views":  [
                 {
                     "view": "body@coach",
                     "templateUrl": "coach/template/about.html",
                     "controller": "dynamicCoachCtrl"
-                }
-            ]
-        },
-        {  
-            "state": "coach.contact",  
-            "url": "/contact",  
-            "views":  [
-                {
-                    "view": "body@coach",
-                    "templateUrl": "coach/template/contact.html"
-                }
-            ]
-        },
-        {  
-            "state": "coach.programs",  
-            "url": "/programs",  
-            "views":  [
-                {
-                    "view": "body@coach",
-                    "templateUrl": "coach/template/programs.html"
-                }
-            ]
-        },
-        {  
-            "state": "coach.staff",  
-            "url": "/staff",  
-            "views":  [
-                {
-                    "view": "body@coach",
-                    "templateUrl": "coach/template/staff.html"
                 }
             ]
         }

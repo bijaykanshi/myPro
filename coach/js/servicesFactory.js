@@ -18,12 +18,21 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     	}
       	
    	}
+   	$rootScope.global.sendRequest('/coach/getOrg',
+		undefined,
+		'GET',
+		function (data, status, headers, config) {
+			coach.orgList = data;
+		},
+		function (data, status, headers, config) {
+			console.log('error');
+	});
     $rootScope.global.sendRequest('/coach/getMainPage',
 		undefined,
 		'GET',
 		function (data, status, headers, config) {
 			coach.mainPage = data.content;
-			coach.repeatAll['home'] = coach.mainPage.innerItem;
+			coach.repeatAll['home'] = coach.mainPage[0].innerItem;
 			coach.struct.home = coach.mainPage[0].structure.split('_');
 			coach.repeatAll['footer'] = data.footer;
 			coach.struct.latestNews = coach.repeatAll['footer'].latestNews.structure.split('_');
