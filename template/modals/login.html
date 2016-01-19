@@ -51,7 +51,21 @@
                     
                     <!-- <textarea rows="9" cols = "50" required name = "{{log}}" class=" form-control" ng-switch-when='msg' ng-model = "global.myInfo[log]" placeholder="About yourself"></textarea> -->
                     <div ng-switch-when='Profession'>
-                      <div class="filters" style="display: block;">
+                      
+                        <div style="position:relative;">
+                            <input  type="text"   class="form-control" placeholder="Type Your Profession" ng-model="searchProfession" ng-focus = "hideSearchBox['profession'] = false;global.itemsLimit = 50"/>
+                            <div class="searchBox loginProfessionSearchBox" ng-hide="hideSearchBox['profession'] || !global.professionList.length" directive-when-scrolled="loadMore()">
+                              <p><button class = "btn-default pull-right" ng-click = "closeSearchBox('profession')">close<img src="/webdata/imgOwn/delete.png" style="width: 18px;height: 18px;pointer: cursor" ></button></p>
+                                <ul>
+                                    <li    ng-repeat="list in global.professionList | filter: searchProfession  |limitTo: global.itemsLimit track by $index " ng-click = "setProfession(list)">
+                                      <span  style="font-weight:bold;">{{list}}</span>
+                                      <img src="/webdata/imgOwn/done.jpg" ng-show = "global.completeFilter.Profession.indexOf(list) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
+                                    </li>
+                                </ul>
+                            </div>
+                  
+                          </div>
+                          <div class="filters" style="display: block;">
                         <div class="filter-list" >
                            
                             <ul class="group" >
@@ -66,19 +80,6 @@
                             </ul>
                           </div>
                         </div>
-                        <ul class="nav nav-pills nav-stacked">
-                            <input  type="text"   class="form-control" placeholder="Type Your Profession" ng-model="searchProfession" ng-focus = "hideSearchBox['profession'] = false;global.itemsLimit = 50"/>
-                            <div class="searchBox loginProfessionSearchBox" ng-hide="hideSearchBox['profession'] || !global.professionList.length" directive-when-scrolled="loadMore()">
-                              <button class = "btn-default pull-right" ng-click = "closeSearchBox('profession')">close<img src="/webdata/imgOwn/delete.png" style="width: 18px;height: 18px;pointer: cursor" ></button>
-                                <ul>
-                                    <li    ng-repeat="list in global.professionList | filter: searchProfession |limitTo: global.itemsLimit track by $index " ng-click = "setProfession(list)">
-                                      <span  style="font-weight:bold;">{{list}}</span>
-                                      <img src="/webdata/imgOwn/done.jpg" ng-show = "global.completeFilter.Profession.indexOf(list) >= 0" style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
-                                    </li>
-                                </ul>
-                            </div>
-                  
-                          </ul>
                     </div>
                     <div ng-switch-when='Skills'>
                       <div class="filters" style="display: block;">
