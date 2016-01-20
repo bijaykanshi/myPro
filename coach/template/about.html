@@ -2,7 +2,7 @@
     <div class="main-bottom">
       <div  class="wrap" >
         <div class="content-bottom" style="background-color: white !important;">
-          	<button class="btn btn-primary" ng-click = "editThisPage = !editThisPage;editImg = editThisPage ? 'save.jpg' : 'edit.jpg';!editThisPage && saveJson()"><span>{{editThisPage ? global.msg.label_save_page : global.msg.label_edit_page}}</span><img class="imgResize" src="./webdata/imgOwn/{{editImg}}" altsrc = "./webdata/imgOwn/edit.jpg" check-image></button>
+          	<button ng-show = "coach.a === coach.aToMatch" class="btn btn-primary" ng-click = "editThisPage = !editThisPage;editImg = editThisPage ? 'save.jpg' : 'edit.jpg';!editThisPage && saveJson()"><span>{{editThisPage ? global.msg.label_save_page : global.msg.label_edit_page}}</span><img class="imgResize" src="./webdata/imgOwn/{{editImg}}" altsrc = "./webdata/imgOwn/edit.jpg" check-image></button>
           <div class="col_1_of_3 span_1_of_3 adjustWidth"  > 
             <!-- <h3 ng-bind-html="coach.currentLinkClick.header">
               <summernote height="70" ng-model = "coach.currentLinkClick.header"></summernote>

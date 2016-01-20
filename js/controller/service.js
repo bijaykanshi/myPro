@@ -41,11 +41,11 @@ app.directive('productionQty', function() {
     }
   }; 
 });
-app.directive("directiveWhenScrolled", function() {
+app.directive("directiveWhenScrolled", function($document) {
   return function(scope, elm, attr) {
     var raw = elm[0];
 
-    elm.bind('scroll', function() {
+    $document.bind('scroll', function() {
       if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
         scope.$apply(attr.directiveWhenScrolled);
       }

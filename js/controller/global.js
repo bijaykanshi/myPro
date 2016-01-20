@@ -23,6 +23,12 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
 	for (var i = 0; i < global.filterItem.length; i += 1) {
 		global.completeFilter[global.filterItem[i]] = [];
 	}
+    global.setMaskForSmallDuration = function() {
+         global.isLoading = true;
+        setTimeout(function() {
+            global.isLoading = false;
+        }, 500);
+    }
 	global.stateChange = function(state) {
 		//$state.go(state);
 		//Session.clear();

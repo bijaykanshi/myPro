@@ -59,8 +59,9 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
    $scope.loginFun = function(dec) {
       $scope.loginData.myPos = googleMap.myPos;
       global.myInfo.myPos = googleMap.myPos;
+      dec = extra === 'edit_website' ? extra : dec;
       var requestData = dec === 'login' ? $scope.loginData : global.myInfo;
-      if (dec !== 'login') {
+      if (dec !== 'login' && extra !== 'edit_website') {
           requestData.professionSkill = global.completeFilter;
       }
       requestData.dec = dec;
@@ -91,9 +92,10 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
                 global.completeFilter.Profession = global.completeFilter.Skills = [];
                 if (dec === 'coach') {
                    $scope.close();
+                   coach.aToMatch = coach.a = data.access_token;
                 }
                 global.myInfo = {};
-                parameter.msg = commonMsg.alert_signUp_success;
+                parameter.msg = dec === 'coach' ? msg.alert_coach_signUp_success : commonMsg.alert_signUp_success;
             } else {
                 parameter.msg = commonMsg.error_server;
             }
