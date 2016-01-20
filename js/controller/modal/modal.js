@@ -33,6 +33,7 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
         undefined,
         'GET',
         function (data, status, headers, config){
+            coach.a = coach.itemInfo.access_token;
             coach.siteJsonProcessing(data);
             $scope.close();
         },

@@ -9,6 +9,7 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.mainPage;
     coach.currentLinkClick = {};
     $rootScope.img = {};
+    coach.a = '12s@';
     coach.setEditLink = function (objRef, key, dec) {
     	if (dec) {
     		coach.objRef = objRef;
