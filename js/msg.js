@@ -6,6 +6,8 @@ var commonMsg = {
 	alert_Contact_Success: 'Thank You for Contact us, we will get bact to you sortly',
 	alert_Plz_Select_Org: 'Please Select at least one Organization from drop down box',
 	alert_coach_signUp_success: 'Your website is created... please edit your website by clicking edit button',
+	alert_wrong_username_password: 'Invalid user name or password... please try again',
+	alert_success_in_saving_json: 'Your website has been successfully saved',
 	label_signUp: 'New User????? Sign Up Please',
 	label_updateProfle: 'Update Your Profile',
 	label_edit_this_page: 'Edit this Page',

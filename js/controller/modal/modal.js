@@ -1,5 +1,6 @@
 app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, coach, parameter, extra, constant) {
    $scope.login = ['email', 'password'];
+   $scope.extra = extra;
    //$scope.signUp = ['name', 'email', 'password', 'doj' 'contact_No', 'Address', 'district', 'state','country', 'org', 'Pin_Code', 'Profession','Skills', 'msg'];
    if (parameter === 'coach') {
       $scope.selectOrg = true;
@@ -29,7 +30,7 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
       //alert('got it');
    }
    $scope.getWebsiteJson = function () {
-      global.sendRequest('/coach/getWebsiteJson?email = ' + coach.itemInfo.email,
+      global.sendRequest('/coach/getWebsiteJson?email=' + coach.itemInfo.email,
         undefined,
         'GET',
         function (data, status, headers, config){
@@ -60,11 +61,11 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
    $scope.loginFun = function(dec) {
       $scope.loginData.myPos = googleMap.myPos;
       global.myInfo.myPos = googleMap.myPos;
-      dec = extra === 'edit_website' ? extra : dec;
       var requestData = dec === 'login' ? $scope.loginData : global.myInfo;
-      if (dec !== 'login' && extra !== 'edit_website') {
+      if (dec !== 'login') {
           requestData.professionSkill = global.completeFilter;
       }
+      dec = extra === 'edit_website' ? extra : dec;
       requestData.dec = dec;
       global.sendRequest('/loginSignUp',
         requestData,
@@ -87,6 +88,14 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
                   $scope.close();
                   $scope.loginData = {};
               }
+          } else if (dec === 'edit_website') {
+              if (data[0] && data[0].access_token === coach.a) {
+                  coach.aToMatch = data[0].access_token;
+                  $scope.close(); 
+              } else {
+                  global.openModal('template/modals/popupMsg.html', 'popupMsg', {msg: msg.alert_wrong_username_password});
+              }
+              
           } else {
             if (!data.error) {
                 coach.itemInfo = angular.copy(global.myInfo);

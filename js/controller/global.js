@@ -161,7 +161,20 @@ app.factory('constant', function($http, $modal, $state, $location, $rootScope){
      
     var constant = {};
     $rootScope.constant = constant;
-    
+    constant.loginForm = [
+        {
+            "type": "email",
+            "placeholder": "Email",
+            "label": "Email",
+            "key": "email"
+        },
+        {
+            "type": "password",
+            "placeholder": "Password",
+            "label": "Password",
+            "key": "password"
+        }
+    ];
     constant.signUpForm = [
     	{
     		"placeholder": "Name",

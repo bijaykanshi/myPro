@@ -11,13 +11,30 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     $rootScope.img = {};
     coach.a = '12s@';
     coach.setEditLink = function (objRef, key, dec) {
-    	if (dec) {
+    	coach.objRef = objRef;
+      	coach.key = key;
+    	/*if (dec) {
     		coach.objRef = objRef;
       		coach.key = key;
     	} else {
     		coach.key = undefined;
-    	}
+    	}*/
       	
+   	}
+   	coach.saveJson = function () {
+    	var obj = {};
+	    obj.data = coach.dataBackUp;
+	    obj.email = coach.itemInfo.email
+	    $rootScope.global.sendRequest('/coach/saveJson',
+          	obj,
+          	'POST',
+          	function (data, status, headers, config) {
+          		coach.aToMatch = 'g5$#';
+          		$rootScope.global.openModal('template/modals/popupMsg.html', 'popupMsg', {msg: msg.alert_success_in_saving_json});
+          },
+          function (data, status, headers, config) {
+            console.log('error');
+      });
    	}
    	$rootScope.global.sendRequest('/coach/getOrg',
 		undefined,

@@ -18,7 +18,7 @@ app.controller('dynamicCoachCtrl', function ($scope, global, coach) {
    $scope.img = {};
    $scope.hideShow = {};
    $scope.colorClasses = ['red', 'blue', 'green'];
-   $scope.saveJson = function() {
+   /*$scope.saveJson = function() {
       var obj = {};
       obj.data = coach.dataBackUp;
       global.sendRequest('/coach/saveJson',
@@ -30,7 +30,7 @@ app.controller('dynamicCoachCtrl', function ($scope, global, coach) {
           function (data, status, headers, config) {
             console.log('error');
       });
-   }
+   }*/
 });
 /*app.controller('headerCoachCtrl', function ($scope, global, coach) {
     $rootScope.global.sendRequest('/mongo/getMainPage',

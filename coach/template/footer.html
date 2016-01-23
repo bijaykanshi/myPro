@@ -1,3 +1,4 @@
+
 <div class="main-bottom">
 		<div class="wrap">
 			<div class="content-bottom">
@@ -5,7 +6,8 @@
 					<h3>{{coach.repeatAll['footer'].welcomeToOurCentre.header}}</h3>
 					<p class="desc2"><strong>{{coach.repeatAll['footer'].welcomeToOurCentre.nextHeader}}.</strong></p>
 					<p class="desc1">{{coach.repeatAll['footer'].welcomeToOurCentre.content}}
-						<img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', coach.repeatAll['footer'].welcomeToOurCentre, 'extraLarge-Modal')" class="imgResizeBottom" src="./webdata/imgOwn/edit.jpg" alt="">
+						<!-- <img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', coach.repeatAll['footer'].welcomeToOurCentre, 'extraLarge-Modal')" class="imgResizeBottom" src="./webdata/imgOwn/edit.jpg" alt=""> -->
+						<img name = "edit" ng-click = "coach.setEditLink(coach.currentLinkClick, 'desc', hideShow.body)" class="imgResizeBottom" src="./webdata/imgOwn/edit.jpg" ng-show = "coach.editThisPage && coach.a === coach.aToMatch" alt="">
 					</p>
 					<p class="desc1" ng-hide="!readMore">{{coach.repeatAll['footer'].welcomeToOurCentre.readMore}} </p>
 					<button class="btn btn-primary" ng-click = "readMore = !readMore"><span>{{readMore ? 'hide': 'Read More'}}</span><img class="imgResize" src="./webdata/imgOwn/more_arrow.png" alt=""></button>
@@ -17,14 +19,17 @@
 						<li ng-repeat = "item in coach.repeatAll['footer'].teachingSupport.innerItem | limitTo: coach.limit track by $index" >
 							<a href="javascript:void(0)"ng-click="support = !support">{{item.link}}</a>
 							<p class="desc1" ng-hide="!support">{{item.content}}</p>
-							<img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" class="imgResize" src="./webdata/imgOwn/edit.jpg" alt="">
-							<img name = "delete" class="imgResize" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && coach.repeatAll['footer'].teachingSupport.innerItem.splice($index, 1);" confirm-click>
+							<div ng-show = "coach.editThisPage && coach.a === coach.aToMatch">
+								<img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" class="imgResize" src="./webdata/imgOwn/edit.jpg" alt="">
+								<img name = "delete" class="imgResize" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && coach.repeatAll['footer'].teachingSupport.innerItem.splice($index, 1);" confirm-click>
+							</div>
+							
 						</li>
 						<div class="clear"> </div>
 					</ul>
 							<img class="imgResizeBottom" name = "up"  ng-click = "reduce('limit')" src="./webdata/imgOwn/up.jpg" alt="">
 							<img class="imgResizeBottom" name = "down"  ng-click = "loadMore('limit', coach.repeatAll['footer'].teachingSupport.innerItem.length)" src="./webdata/imgOwn/down.jpg" alt="">
-							<img class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'teachingSupport_footer', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
+							<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'teachingSupport_footer', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
 				</div>
 				<div class="col_1_of_3 span_1_of_3" ng-init = "coach.limit1 = 4">
 					<h3>Latest News</h3>
@@ -34,15 +39,18 @@
 						</div>
 						<div class="latest-news-info">
 							<a href="javascript:void(0)" ng-click = "global.openModal('coach/template/modals/display.html', 'displayCoachCtrl', item, 'extraLarge-Modal', 'News')">{{item.date}}</a>
-							<img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" class="imgResize" src="./webdata/imgOwn/edit.jpg" alt="">
-							<img name = "delete" class="imgResize" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && coach.repeatAll['footer'].latestNews.content.splice($index, 1);" msg = "label_msg" confirm-click>
+							<div ng-show = "coach.editThisPage && coach.a === coach.aToMatch">
+								<img name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" class="imgResize" src="./webdata/imgOwn/edit.jpg" alt="">
+								<img name = "delete" class="imgResize" src="./webdata/imgOwn/delete.png" alt="" ng-click="confirmClick() && coach.repeatAll['footer'].latestNews.content.splice($index, 1);" msg = "label_msg" confirm-click>
+							</div>
+							
 							<p class="desc1">{{item.newsHeader}}</p>
 						</div>
 						<div class="clear"> </div>
 					</div>
 					<img class="imgResizeBottom" name = "up"  ng-click = "reduce('limit1')" src="./webdata/imgOwn/up.jpg" alt="">
 					<img class="imgResizeBottom" name = "down"  ng-click = "loadMore('limit1', coach.repeatAll['footer'].latestNews.innerItem.length)" src="./webdata/imgOwn/down.jpg" alt="">
-					<img class="imgResizeBottom"  style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'latestNews_footer', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
+					<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom"  style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'latestNews_footer', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
 					<div class="clear"></div> 
 				</div>
 			</div>

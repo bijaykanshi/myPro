@@ -4,30 +4,33 @@
 			<div  ng-init = "class = ['desc', 'desc-middle', 'last']">
 				<div class="main" >
 					<div class="banner">
-						<img src="./coach/firstPage/images/banner1.jpg" alt=""/>
+						<img class="imgBanner" src="./webdata/coach/img/home.jpg" alt=""/>
 					</div>
 					<div ng-class= "{'section-top': $index % 3 == 0}" ng-repeat= "item in coach.repeatAll['home']">
 						<!-- index = {{$index}} -->
 						<div class="col_1_of_3 span_1_of_3">
 							<div class="title-img">
-								<div class="title"><img src="./coach/firstPage/images/book1.png" alt=""/></div>
+								<div class="title"><img src="./webdata/coach/img/home.jpg" alt=""/></div>
 									<div class="title-desc"><p>{{item.header}}</p></div>
 									<div class="clear"></div> 
 							</div>
 							<p ng-class="class[$index % 3]"><strong>{{item.nextHeader}}</strong></p>
 							<p class="desc1">{{item.content}}</p>
 							<p class="desc1" ng-hide="!readMore">{{item.readMore}}</p>
-							<img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./coach/firstPage/imgOwn/up.jpg" alt="">
-							<img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./coach/firstPage/imgOwn/down.jpg" alt="">
-							<img class="imgResizeBottom" name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" src="./coach/firstPage/imgOwn/edit.jpg" alt="">
-							<img class="imgResizeBottom" name = "delete" ng-click="confirmClick() && coach.repeatAll['home'].splice($index, 1);" confirm-click src="./coach/firstPage/imgOwn/delete.png" alt="">
+							<img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/up.jpg" alt="">
+							<img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/down.jpg" alt="">
+							<div ng-show = "coach.editThisPage && coach.a === coach.aToMatch">
+								<img class="imgResizeBottom" name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" src="./webdata/imgOwn/edit.jpg" alt="">
+								<img class="imgResizeBottom" name = "delete" ng-click="confirmClick() && coach.repeatAll['home'].splice($index, 1);" confirm-click src="./webdata/imgOwn/delete.png" alt="">
+							</div>
+							
 						</div>
 						<div ng-class= "{'clear':  $index % 3 == 2}"></div>
 
 					</div>
 					<div class="clear"></div>
 				</div>
-				<img class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'home', 'extraLarge-Modal')" name="addNew" src="./coach/firstPage/imgOwn/addNew.png" alt="">
+				<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'home', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
 					
 			</div>
 		</div>

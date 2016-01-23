@@ -239,3 +239,20 @@ width: 44%;
 .help-block.help-block-error.custom-date-error{
     color: #a94442;
 }
+.headerPos {
+    position: fixed;
+    width: 100%;
+    background-color: #E8E1E1 !important;
+}
+.summerNotePos {
+    width: 80%;
+    margin-left: 10%;
+}
+.socialPos {
+    margin-left: 53%;
+    width: 102%;
+}
+.imgBanner {
+    width: 100%;
+    height: 382px;
+}
