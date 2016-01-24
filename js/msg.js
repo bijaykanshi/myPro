@@ -8,6 +8,7 @@ var commonMsg = {
 	alert_coach_signUp_success: 'Your website is created... please edit your website by clicking edit button',
 	alert_wrong_username_password: 'Invalid user name or password... please try again',
 	alert_success_in_saving_json: 'Your website has been successfully saved',
+	alert_success_in_adding_new_list: 'A new item has been successfully added at last ... please edit the content',
 	label_signUp: 'New User????? Sign Up Please',
 	label_updateProfle: 'Update Your Profile',
 	label_edit_this_page: 'Edit this Page',

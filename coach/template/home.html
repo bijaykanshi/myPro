@@ -11,18 +11,30 @@
 						<div class="col_1_of_3 span_1_of_3">
 							<div class="title-img">
 								<div class="title"><img src="./webdata/coach/img/home.jpg" alt=""/></div>
-									<div class="title-desc"><p>{{item.header}}</p></div>
+									<div class="title-desc">
+										<p ng-bind-html="item.header | to_trusted">
+										
+										</p>
+										<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" name = "edit" ng-click = "coach.setEditLink(item, 'header')" src="./webdata/imgOwn/edit.jpg" alt="">
+									</div>
 									<div class="clear"></div> 
 							</div>
-							<p ng-class="class[$index % 3]"><strong>{{item.nextHeader}}</strong></p>
-							<p class="desc1">{{item.content}}</p>
-							<p class="desc1" ng-hide="!readMore">{{item.readMore}}</p>
+							<p ng-class="class[$index % 3]">
+								<strong ng-bind-html="item.nextHeader | to_trusted">
+								</strong>
+								<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" name = "edit" ng-click = "coach.setEditLink(item, 'nextHeader')" src="./webdata/imgOwn/edit.jpg" alt="">
+							</p>
+							<p class="desc1" ng-bind-html="item.content | to_trusted">
+							</p>
+							<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" name = "edit" ng-click = "coach.setEditLink(item, 'content')" src="./webdata/imgOwn/edit.jpg" alt="">
+							<p class="desc1" ng-hide="!readMore" ng-bind-html="item.readMore | to_trusted">
+							</p>
+							<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch && readMore" class="imgResizeBottom" name = "edit" ng-click = "coach.setEditLink(item, 'readMore')" src="./webdata/imgOwn/edit.jpg" alt="">
+							
 							<img class="imgResizeBottom" name = "readMore" ng-hide="!readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/up.jpg" alt="">
 							<img class="imgResizeBottom" name = "readMore" ng-hide="readMore" ng-click = "readMore = !readMore" src="./webdata/imgOwn/down.jpg" alt="">
-							<div ng-show = "coach.editThisPage && coach.a === coach.aToMatch">
-								<img class="imgResizeBottom" name = "edit" ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', item, 'extraLarge-Modal')" src="./webdata/imgOwn/edit.jpg" alt="">
-								<img class="imgResizeBottom" name = "delete" ng-click="confirmClick() && coach.repeatAll['home'].splice($index, 1);" confirm-click src="./webdata/imgOwn/delete.png" alt="">
-							</div>
+
+							<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" name = "delete" ng-click="confirmClick() && coach.repeatAll['home'].splice($index, 1);" confirm-click src="./webdata/imgOwn/delete.png" alt="">
 							
 						</div>
 						<div ng-class= "{'clear':  $index % 3 == 2}"></div>
@@ -30,7 +42,9 @@
 					</div>
 					<div class="clear"></div>
 				</div>
-				<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'home', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
+				<!-- <img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" style="width:97px"  ng-click = "global.openModal('coach/template/modals/editShow.html', 'editShowCoachCtrl', 'home', 'extraLarge-Modal')" name="addNew" src="./webdata/imgOwn/addNew.png" alt=""> -->
+
+				<img ng-show = "coach.editThisPage && coach.a === coach.aToMatch" class="imgResizeBottom" style="width:97px"  ng-click = "coach.addNewListItem(coach.repeatAll['home'], 'homeInnerItem')" name="addNew" src="./webdata/imgOwn/addNew.png" alt="">
 					
 			</div>
 		</div>

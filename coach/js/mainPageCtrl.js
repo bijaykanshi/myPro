@@ -13,24 +13,12 @@ app.controller('homeCoachCtrl', function ($scope, global, coach) {
         $scope.mapCluster = tindle;
     }*/
 });
-app.controller('dynamicCoachCtrl', function ($scope, global, coach) {
+app.controller('dynamicCoachCtrl', function ($scope, global, constant, coach) {
   
    $scope.img = {};
    $scope.hideShow = {};
    $scope.colorClasses = ['red', 'blue', 'green'];
-   /*$scope.saveJson = function() {
-      var obj = {};
-      obj.data = coach.dataBackUp;
-      global.sendRequest('/coach/saveJson',
-          obj,
-          'POST',
-          function (data, status, headers, config) {
-              console.log('success');
-          },
-          function (data, status, headers, config) {
-            console.log('error');
-      });
-   }*/
+  
 });
 /*app.controller('headerCoachCtrl', function ($scope, global, coach) {
     $rootScope.global.sendRequest('/mongo/getMainPage',

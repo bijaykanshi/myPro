@@ -13,6 +13,10 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
     global.itemsLimit = 50;
     global.msgList = {};
     global.msg = commonMsg;
+    var protocol = {
+        json: {'Content-type': 'application/json'},
+        urlencoded: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }
     global.extractCountry = function() {
     	for (var key in countryCity.list) {
     		global.countryList.push(key);
@@ -81,9 +85,15 @@ app.factory('global', function($http, $modal, $state, $location, $rootScope){
         });
 		//alert('scroll');
 	}
-    global.sendRequest = function(url, dataObj, method, successFn, failureFn) {
+    global.sendRequest = function(url, dataObj, method, successFn, failureFn, header) {
     	global.isLoading = true;
-    	var res = $http[method.toLocaleLowerCase()](url, dataObj);
+    	//var res = $http[method.toLocaleLowerCase()](url, dataObj);
+        var res = $http({
+            method: method,
+            url: url,
+            headers: protocol[header || 'json'],
+            data: dataObj
+        });
 		res.success(function(data, status, headers, config) {
 			global.isLoading = false;
 			if (successFn) {
@@ -161,6 +171,44 @@ app.factory('constant', function($http, $modal, $state, $location, $rootScope){
      
     var constant = {};
     $rootScope.constant = constant;
+    constant.listItem = {
+          "header": "Dummy Text Please edit this one",
+          "desc": "Dummy Text Please edit this one ",
+          "image": "./coach/firstPage/images/pic4.jpg",
+          "innerItem": [
+            {
+              "side": "Dummy Text Please edit this one",
+              "middle": "Dummy Text Please edit this one ",
+              "desc": "Dummy Text Please edit this one "
+            },
+            {
+              "side": "Dummy Text Please edit this one",
+              "middle": "Dummy Text Please edit this one ",
+              "desc": "Dummy Text Please edit this one "
+            }
+          ]
+    };
+    constant.innerItem = {
+      "side": "Dummy Text Please edit this one",
+      "middle": "Dummy Text Please edit this one ",
+      "desc": "Dummy Text Please edit this one "
+    };
+    constant.homeInnerItem = {
+      "header": "Dummy Header",
+      "nextHeader": "Dummy Text Please edit this one ",
+      "content": "Dummy Text Please edit this one ",
+      "readMore": "Dummy Text Please edit this one "
+    }
+    constant.footerSecondInnerItem =   {
+      "link": "Dummy Text Please edit this one",
+      "content": "Dummy Text Please edit this one"
+    };
+    constant.footerThirdInnerItem =   {
+      "imgSrc": "./coach/firstPage/imgOwn/news.png",
+      "date": "JDummy Text Please edit this one",
+      "newsHeader": "Dummy Text Please edit this one",
+      "newsContent": "Dummy Text Please edit this one"
+    };
     constant.loginForm = [
         {
             "type": "email",

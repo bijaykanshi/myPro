@@ -1,4 +1,4 @@
-app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
+app.factory('coach', function($http, $modal, $state, $location, $rootScope, constant, global) {
     var coach = {};
     $rootScope.coach = coach;
     coach.struct = {};
@@ -13,6 +13,7 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     coach.setEditLink = function (objRef, key, dec) {
     	coach.objRef = objRef;
       	coach.key = key;
+      	$rootScope.global.openModal('coach/template/modals/editAddDynamicContent.html', 'loginSignUpCoach', undefined, 'extraLarge-Modal')
     	/*if (dec) {
     		coach.objRef = objRef;
       		coach.key = key;
@@ -21,6 +22,11 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope) {
     	}*/
       	
    	}
+   	coach.addNewListItem = function(objRef, key) {
+      var copy = angular.copy(constant[key]);
+      objRef.push(copy);
+      global.openModal('template/modals/popupMsg.html', 'popupMsg', {msg: msg.alert_success_in_adding_new_list});
+    }
    	coach.saveJson = function () {
     	var obj = {};
 	    obj.data = coach.dataBackUp;

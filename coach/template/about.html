@@ -39,13 +39,21 @@
 
     </div>
 
+
     <!-- <div class="wrap"></div> -->
      <div class="clear"></div>
 
 
      <div class="main-bottom">
+        
       <div class="wrap" style="background-color: white;">
+        <button class="btn btn-primary" ng-show = "coach.editThisPage && coach.a === coach.aToMatch" ng-click = "coach.addNewListItem(coach.currentLinkClick.listItem, 'listItem')">
+            <span>Add New Item to below </span>
+            <img class="imgResize" src="./webdata/imgOwn/add.png" alt="">
+        </button>
+
         <div class="content-bottom" style="background-color: white !important;">
+          
           <div class="col_1_of_3 grid_1_of_3 " ng-repeat = "listItem in coach.currentLinkClick.listItem">
             <img  class = "imgWidth" altsrc = "./webdata/imgOwn/noImage.jpg" ng-src="{{listItem.image}}" title="imag-name" check-image>
 
@@ -58,6 +66,8 @@
 
             <p ng-bind-html="listItem.desc | to_trusted">
             </p>
+            <img name = "edit" ng-show = "coach.editThisPage && coach.a === coach.aToMatch" ng-click = "coach.addNewListItem(listItem.innerItem, 'innerItem')" ng-src="./webdata/imgOwn/add.png" class="imgResize" alt="" altsrc = "./webdata/imgOwn/add.png" check-image>
+
             <img name = "edit" ng-show = "coach.editThisPage && coach.a === coach.aToMatch" ng-click = "hideShow['desc' + $index] = !hideShow['desc' + $index];img['desc' + $index] = hideShow['desc' + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(listItem, 'desc', hideShow['desc' + $index])" ng-src="./webdata/imgOwn/{{img['desc' + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
             
             
@@ -78,10 +88,12 @@
                           	</p>
                           	<img name = "edit" ng-show = "coach.editThisPage && coach.a === coach.aToMatch" ng-click = "hideShow['middle' + $parent.$index + $index] = !hideShow['middle' + $parent.$index + $index];img['middle' + $parent.$index + $index] = hideShow['middle' + $parent.$index + $index] ? 'done.jpg': 'edit.jpg';coach.setEditLink(innerItem, 'middle', hideShow['middle' + $parent.$index + $index])" ng-src="./webdata/imgOwn/{{img['middle' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
 
-                            <img ng-init = "img['updown' + $parent.$index + $index] = 'down.jpg'" name = "updown" ng-click = "hideShow['updown' + $parent.$index + $index] = !hideShow['updown' + $parent.$index + $index];img['updown' + $parent.$index + $index] = hideShow['updown' + $parent.$index + $index] ? 'up.jpg': 'down.jpg';" ng-src="./webdata/imgOwn/{{img['updown' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+                            
 
                           	<p  ng-show = "hideShow['updown' + $parent.$index + $index]" class="sample-show-hide" ng-bind-html="innerItem.desc | to_trusted">
                           	</p>
+                            <img ng-init = "img['updown' + $parent.$index + $index] = 'down.jpg'" name = "updown" ng-click = "hideShow['updown' + $parent.$index + $index] = !hideShow['updown' + $parent.$index + $index];img['updown' + $parent.$index + $index] = hideShow['updown' + $parent.$index + $index] ? 'up.jpg': 'down.jpg';" ng-src="./webdata/imgOwn/{{img['updown' + $parent.$index + $index]}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
+
                            	<img ng-show = "hideShow['updown' + $parent.$index + $index] && coach.editThisPage && coach.a === coach.aToMatch"  name = "edit" ng-click = "hideShow.middle = !hideShow.middle;img.middle = hideShow.middle ? 'done.jpg': 'edit.jpg';coach.setEditLink(innerItem, 'desc', hideShow.middle)" ng-src="./webdata/imgOwn/{{img.middle}}" class="imgResize" alt="" altsrc = "./webdata/imgOwn/edit.jpg" check-image>
 
                       	</div>
