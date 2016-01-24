@@ -80,11 +80,12 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
                   /*global.peopleListBackUp = data[1];
                   global.peopleList = global.getPaination(data[1]);
                   global.myInfo = $scope.searchMyInfo(data[1]);*/
-                  global.peopleListBackUp = data;
-                  global.peopleList = global.getPaination(data);
-                  global.myInfo = $scope.searchMyInfo(data);
+                  global.peopleListBackUp = data[1];
+                  global.peopleList = global.getPaination(data[1]);
+                  global.myInfo = $scope.searchMyInfo(data[1]);
                   chat.initialization(global.myInfo);
-                  $state.go('peopleList');
+                  //$state.go('peopleList');
+                  $state.go('coachList');
                   $scope.close();
                   $scope.loginData = {};
               }

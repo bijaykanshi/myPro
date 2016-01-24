@@ -18,7 +18,6 @@ app.controller('dynamicCoachCtrl', function ($scope, global, constant, coach) {
    $scope.img = {};
    $scope.hideShow = {};
    $scope.colorClasses = ['red', 'blue', 'green'];
-  
 });
 /*app.controller('headerCoachCtrl', function ($scope, global, coach) {
     $rootScope.global.sendRequest('/mongo/getMainPage',

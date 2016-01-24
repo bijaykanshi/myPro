@@ -56,7 +56,7 @@
 				     		<ul>
 						    	<li ng-class="{'active': coach.tab === 'home'}" ng-click = "coach.tab = 'home'"><a href="javascript:void(0)" ui-sref="coach.home">Home</a></li>
 						    	
-						    	<!-- <li ng-class="{'active': coach.tab === 'login'}" ng-click = "global.openModal('formBuilder/index.html', 'DemoController', undefined, 'extraLarge-Modal');coach.tab = 'login'"><a href="javascript:void(0)" ui-sref="coach.home">Form Builder</a></li> -->
+						    	
 						    	<li ng-repeat="item in coach.linkArray" ng-if = "item.type !== 'static'" ng-class="{'active': coach.tab === item.link}" ng-click="coach.currentLinkClick = item;coach.tab = item.link">
 						    		<a ui-sref="coach.about" name="{{item.link}}">{{item.link}}
 						    			<img name = "delete" class="imgResize" ng-show = "coach.a === coach.aToMatch && coach.editThisPage" src="./webdata/imgOwn/delete.png" alt="" ng-click="$event.stopPropagation();confirmClick() && coach.linkArray.splice($index, 1);"  confirm-click = "{{global.msg.confirm_delete}}">

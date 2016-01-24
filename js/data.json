@@ -5,7 +5,7 @@
             "url": "/peopleList",  
             "views":  [
                 {
-                    "view": "page",
+                    "view": "@",
                     "templateUrl": "template/afterLogin.html"
                 },
                 {
@@ -26,6 +26,37 @@
                 }
             ]
         },
+        {  
+            "state": "coachList",  
+            "url": "/",  
+            "views":  [
+                {
+                    "view": "@",
+                    "templateUrl": "innerPage/index.html"
+                },
+                {
+                    "view": "header@coachList",
+                    "templateUrl": "innerPage/innerHeader.html"
+                },
+                {
+                    "view": "sideBar@coachList",
+                    "templateUrl": "innerPage/innerLeftSideBar.html"
+                },
+                {
+                    "view": "body@coachList",
+                    "templateUrl": "template/listOfPeople.html"
+                },
+                {
+                    "view": "rightSideBar@coachList",
+                    "templateUrl": "template/rightSideBar.html"
+                },
+                {
+                    "view": "footer@coachList",
+                    "templateUrl": "innerPage/innerFooter.html"
+                }
+            ]
+        },
+
         {  
             "state": "coach",  
             "url": "/",  
@@ -54,7 +85,7 @@
         },
         {  
             "state": "coach.home",  
-            "url": "/home",  
+            "url": "/",  
             "views":  [
                 {
                     "view": "body@coach",
@@ -64,7 +95,7 @@
         },
         {  
             "state": "coach.about",  
-            "url": "/dynamic",  
+            "url": "/",  
             "views":  [
                 {
                     "view": "body@coach",

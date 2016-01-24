@@ -15,7 +15,7 @@
 										<ul>
 				                    	<h2>Chat</h2>
 				                            <li ng-repeat = "list in global.peopleListBackUp" ng-click = "global.register_pop(list.id, list.name)"class="listStyle" ng-if = "list.id != global.myInfo.id">
-				                            	<img check-image ng-src="images/peopleList/{{list.id}}"   class="chatImage pull-left">
+				                            	<img check-image ng-src="images/peopleList/{{list.id}}" altsrc = "./webdata/imgOwn/noImage.jpg"   class="chatImage pull-left">
 				                            	<span  style="font-weight:bold;margin-left: 23px;">{{list.name}} gjgjkkhjhkjhk
 				                            	</span>
 				                            	<img src="/images/icon/online.png" ng-hide = "!list.online"  style="width: 18px;height: 18px;pointer: cursor"  class = "pull-right" >
