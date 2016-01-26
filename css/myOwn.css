@@ -264,3 +264,9 @@ width: 44%;
     height: 20px;
     cursor: pointer;
 }
+
+.formClose {
+    width: 63px;
+    height: 55px;
+    cursor: pointer;
+}

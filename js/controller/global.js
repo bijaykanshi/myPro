@@ -395,4 +395,3 @@ app.run(function($rootScope, $state, global, $builder) {
 String.prototype.capFirst = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-
