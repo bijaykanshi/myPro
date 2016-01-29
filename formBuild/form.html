@@ -135,6 +135,8 @@
 
                                   <span ng-class="{'glyphicon glyphicon-remove form-control-feedback': afterFormBuild[$index].$invalid, 'glyphicon glyphicon-ok form-control-feedback': afterFormBuild[$index].$valid && afterFormBuild[$index].$dirty}" ></span>
 
+                                  <span ng-show="afterFormBuild[$index].$error.required" class = "help-block help-block-error custom-date-error">{{form.error_msg_required}}</span>
+
                             </div>
                               
 

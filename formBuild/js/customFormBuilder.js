@@ -7,10 +7,10 @@ app.factory('formFactory', function($http, $modal, $state, $location, $rootScope
             label: 'label',
             placeholder: 'placeholder',
             error_msg_required: 'This field is required',
-            min: undefined,
+          /*  min: undefined,
             error_msg_min_length: 'Length can not be less than',
             max: undefined,
-            error_msg_max_length: 'Length can not be greater than',
+            error_msg_max_length: 'Length can not be greater than',*/
             position: 0,
             required: false
         },
