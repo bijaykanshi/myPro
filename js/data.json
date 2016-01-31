@@ -94,6 +94,16 @@
             ]
         },
         {  
+            "state": "firstPage",  
+            "url": "/d",  
+            "views":  [
+                {
+                    "view": "@",
+                    "templateUrl": "./coach/personnal/index.html"
+                }
+            ]
+        },
+        {  
             "state": "coach.about",  
             "url": "/",  
             "views":  [

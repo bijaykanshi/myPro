@@ -55,7 +55,8 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope, cons
 		undefined,
 		'GET',
 		function (data, status, headers, config) {
-			coach.siteJsonProcessing(data);
+			coach.siteJsonProcessing(data[0]);
+			coach.defaulForm = data[1][0];
 		},
 		function (data, status, headers, config) {
 			console.log('error');
@@ -105,3 +106,48 @@ app.factory('coach', function($http, $modal, $state, $location, $rootScope, cons
 	return coach;
   }
 ]);*/
+app.directive('scrollSpy', function($timeout){
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attr) {
+            var offset = parseInt(attr.scrollOffset, 10)
+            if(!offset) offset = 10;
+            console.log("offset:  " + offset);
+            elem.scrollspy({ "offset" : offset});
+            scope.$watch(attr.scrollSpy, function(value) {
+                $timeout(function() { 
+                  elem.scrollspy('refresh', { "offset" : offset})
+                }, 1);
+            }, true);
+        }
+    }
+});
+
+app.directive('preventDefault', function() {
+    return function(scope, element, attrs) {
+        jQuery(element).click(function(event) {
+            event.preventDefault();
+        });
+    }
+});
+
+app.directive("scrollTo", ["$window", function($window){
+    return {
+        restrict : "AC",
+        compile : function(){
+
+            function scrollInto(elementId) {
+                if(!elementId) $window.scrollTo(0, 0);
+                //check if an element can be found with id attribute
+                var el = document.getElementById(elementId);
+                if(el) el.scrollIntoView();
+            }
+
+            return function(scope, element, attr) {
+                element.bind("click", function(event){
+                    scrollInto(attr.scrollTo);
+                });
+            };
+        }
+    };
+}]);

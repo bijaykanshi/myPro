@@ -270,3 +270,10 @@ width: 44%;
     height: 55px;
     cursor: pointer;
 }
+.bodySize {
+    width: 103%;
+    height: 149%;
+    /* top: -22px; */
+    margin-left: -10px;
+    margin-top: -10px;
+}

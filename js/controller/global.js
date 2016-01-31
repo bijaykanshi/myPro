@@ -353,7 +353,8 @@ app.run(function($rootScope, $state, global, $builder) {
 		    });
 			//$state.go('home', {param : 'home'}, {reload: false});
 		    //$state.go("home");
-		    $state.go("coach.home");
+		    //$state.go("coach.home");
+            $state.go("firstPage");
           	console.log('success');
         },
         function (data, status, headers, config) {

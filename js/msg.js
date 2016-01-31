@@ -24,6 +24,7 @@ var commonMsg = {
 	error_length_greater_50: 'Length of Link can not be greater than 50',
 	error_server: 'There is some server error , make sure entered email is unique',
 	error_required: 'This Field can not be empty',
+	error_server_side_file: 'Ther is an server side error.. please try again later',
 	disp_addlistItem: 'Add List Item',
 	disp_addInnerItem: 'Add Inner Item',
 	disp_creation_of_link: 'Creation of Link',

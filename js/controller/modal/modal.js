@@ -33,10 +33,14 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
       global.sendRequest('/coach/getWebsiteJson?email=' + coach.itemInfo.email,
         undefined,
         'GET',
-        function (data, status, headers, config){
-            coach.a = coach.itemInfo.access_token;
-            coach.siteJsonProcessing(data);
-            $scope.close();
+        function (data, status, headers, config) {
+            if (data.status === 'error') {
+               global.openModal('template/modals/popupMsg.html', 'popupMsg', {msg: commonMsg.error_server_side_file});
+            } else {
+              coach.a = coach.itemInfo.access_token;
+              coach.siteJsonProcessing(data);
+              $scope.close();
+            }
         },
         function (data, status, headers, config) {
           console.log('error');
@@ -67,6 +71,7 @@ app.controller('loginSignUp', function ($scope, $modalInstance, $state, global, 
       }
       dec = extra === 'edit_website' ? extra : dec;
       requestData.dec = dec;
+      //var requestData = {email: 'prity@gmail.com', password: 'new', myPos: {}, dec: 'login'};
       global.sendRequest('/loginSignUp',
         requestData,
         'POST',

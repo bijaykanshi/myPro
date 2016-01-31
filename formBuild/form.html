@@ -120,7 +120,7 @@
                               </select>
 
                               <label ng-switch-when="radio" class="radio-inline" ng-repeat="option in form.options">
-                                  <input type="{{form.type}}" name="{{$parent.$index + $index}}" value="{{option.value}}">{{option.label}}
+                                  <input type="{{form.type}}" name="{{$parent.$index}}" value="{{option.value}}">{{option.label}}
                               </label>
 
 
@@ -133,7 +133,7 @@
 
                                   <input ng-if="!form.required"  type="{{form.type}}" name = "{{$index}}" class="form-control" placeholder = "{{form.placeholder}}" min = "{{form.min}}" ng-model = "form.feedValue" max = "{{form.max}}">
 
-                                  <span ng-class="{'glyphicon glyphicon-remove form-control-feedback': afterFormBuild[$index].$invalid, 'glyphicon glyphicon-ok form-control-feedback': afterFormBuild[$index].$valid && afterFormBuild[$index].$dirty}" ></span>
+                                  <!-- <span ng-class="{'glyphicon glyphicon-remove form-control-feedback': afterFormBuild[$index].$invalid, 'glyphicon glyphicon-ok form-control-feedback': afterFormBuild[$index].$valid && afterFormBuild[$index].$dirty}" ></span> -->
 
                                   <span ng-show="afterFormBuild[$index].$error.required" class = "help-block help-block-error custom-date-error">{{form.error_msg_required}}</span>
 
